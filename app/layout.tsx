@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { NavigationShell } from "@/components/navigation/NavigationShell";
+import { SkipLink } from "@/components/ui/SkipLink";
+import {
+  getNavigationContent,
+  getAllCaseStudies,
+  getAllResearchEntries,
+} from "@/lib/content/loaders";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -50,6 +57,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navigation = getNavigationContent();
+  const caseStudies = getAllCaseStudies().map((cs) => ({
+    slug: cs.frontmatter.slug,
+    title: cs.frontmatter.title,
+    discipline: cs.frontmatter.discipline,
+  }));
+  const researchEntries = getAllResearchEntries().map((re) => ({
+    slug: re.frontmatter.slug,
+    title: re.frontmatter.title,
+    area: re.frontmatter.area,
+  }));
+
   return (
     <html
       lang="en"
@@ -57,6 +76,12 @@ export default function RootLayout({
       style={{ colorScheme: "dark" }}
     >
       <body className="min-h-screen bg-[#08090C] text-[#D9DEE5] font-sans antialiased selection:bg-[#B6E36A] selection:text-[#08090C]">
+        <SkipLink />
+        <NavigationShell
+          items={navigation.items}
+          caseStudies={caseStudies}
+          researchEntries={researchEntries}
+        />
         {children}
       </body>
     </html>
