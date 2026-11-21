@@ -1,6 +1,7 @@
 import { EntryHero } from "@/components/entry/EntryHero";
 import { PersonSection } from "@/components/person/PersonSection";
 import { WorkSection } from "@/components/work/WorkSection";
+import { TwinSection } from "@/components/twin/TwinSection";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Divider } from "@/components/ui/Divider";
 import {
@@ -9,6 +10,8 @@ import {
   getWorkContent,
   getPersonContent,
   getTimelineContent,
+  getTwinQuestions,
+  getTwinFallbackAnswers,
 } from "@/lib/content/loaders";
 
 export default function Home() {
@@ -17,9 +20,10 @@ export default function Home() {
   const work = getWorkContent();
   const person = getPersonContent();
   const timeline = getTimelineContent();
+  const twinQuestions = getTwinQuestions();
+  const twinFallback = getTwinFallbackAnswers();
 
   const remainingSections = [
-    { id: "twin", ring: "RING 04 / TWIN", title: "The Digital Counterpart", serif: "Digital" },
     { id: "stack", ring: "RING 05 / STACK", title: "Constellation of Systems", serif: "Systems" },
     { id: "research", ring: "RING 06 / RESEARCH", title: "Inquiries at the Physical Boundary", serif: "Boundary" },
     { id: "connect", ring: "RING 07 / CONNECT", title: "Start the Next Question", serif: "Question" },
@@ -42,12 +46,21 @@ export default function Home() {
 
       <Divider ringNumber="RING 04 / TWIN" />
 
+      {/* Section 04: Twin */}
+      <TwinSection
+        suggestedQuestions={twinQuestions.questions}
+        fallbackData={twinFallback}
+        personaName={site.name.split(" ")[0] ?? "Muzammil"}
+      />
+
+      <Divider ringNumber="RING 05 / STACK" />
+
       {/* Remaining sections */}
       {remainingSections.map((section, idx) => (
         <section
           key={section.id}
           id={section.id}
-          data-ring={String(idx + 4).padStart(2, "0")}
+          data-ring={String(idx + 5).padStart(2, "0")}
           className="min-h-[50vh] flex flex-col justify-center scroll-mt-24 border border-[#252C35]/30 p-8 sm:p-12 rounded-sm bg-[#0E1117]/30"
         >
           <SectionHeader
@@ -58,7 +71,7 @@ export default function Home() {
           />
           {idx < remainingSections.length - 1 && (
             <Divider
-              ringNumber={`RING ${String(idx + 5).padStart(2, "0")} / ${remainingSections[idx + 1]?.id.toUpperCase()}`}
+              ringNumber={`RING ${String(idx + 6).padStart(2, "0")} / ${remainingSections[idx + 1]?.id.toUpperCase()}`}
               className="mt-16 mb-0"
             />
           )}
