@@ -3,6 +3,7 @@ import { PersonSection } from "@/components/person/PersonSection";
 import { WorkSection } from "@/components/work/WorkSection";
 import { TwinSection } from "@/components/twin/TwinSection";
 import { StackSection } from "@/components/stack/StackSection";
+import { ResearchSection } from "@/components/research/ResearchSection";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Divider } from "@/components/ui/Divider";
 import {
@@ -14,6 +15,7 @@ import {
   getTwinQuestions,
   getTwinFallbackAnswers,
   getStackContent,
+  getResearchContent,
 } from "@/lib/content/loaders";
 
 export default function Home() {
@@ -25,9 +27,9 @@ export default function Home() {
   const twinQuestions = getTwinQuestions();
   const twinFallback = getTwinFallbackAnswers();
   const stack = getStackContent();
+  const research = getResearchContent();
 
   const remainingSections = [
-    { id: "research", ring: "RING 06 / RESEARCH", title: "Inquiries at the Physical Boundary", serif: "Boundary" },
     { id: "connect", ring: "RING 07 / CONNECT", title: "Start the Next Question", serif: "Question" },
   ];
 
@@ -62,12 +64,17 @@ export default function Home() {
 
       <Divider ringNumber="RING 06 / RESEARCH" />
 
+      {/* Section 06: Research */}
+      <ResearchSection research={research} />
+
+      <Divider ringNumber="RING 07 / CONNECT" />
+
       {/* Remaining sections */}
       {remainingSections.map((section, idx) => (
         <section
           key={section.id}
           id={section.id}
-          data-ring={String(idx + 6).padStart(2, "0")}
+          data-ring={String(idx + 7).padStart(2, "0")}
           className="min-h-[50vh] flex flex-col justify-center scroll-mt-24 border border-[#252C35]/30 p-8 sm:p-12 rounded-sm bg-[#0E1117]/30"
         >
           <SectionHeader
@@ -76,12 +83,6 @@ export default function Home() {
             serifWord={section.serif}
             subtitle="Section foundation ready for interactive layer integration."
           />
-          {idx < remainingSections.length - 1 && (
-            <Divider
-              ringNumber={`RING ${String(idx + 7).padStart(2, "0")} / ${remainingSections[idx + 1]?.id.toUpperCase()}`}
-              className="mt-16 mb-0"
-            />
-          )}
         </section>
       ))}
     </main>

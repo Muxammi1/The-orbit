@@ -1,0 +1,29 @@
+---
+title: "Self-Correcting Retrieval Architectures for High-Stakes Grounding"
+slug: "agentic-retrieval-verification"
+status: "Exploratory"
+area: "Retrieval-Augmented Generation"
+group: "Future directions"
+date: "2024"
+summary: "Theoretical investigation into citation verifiability and multi-hop retrieval paths in high-stakes reasoning systems."
+evidenceUrl: ""
+---
+
+## Abstract
+[Placeholder: formal abstract defining multi-hop verification and deterministic validation graphs for RAG systems].
+
+## Inquiries & Problem Formulation
+Current Retrieval-Augmented Generation systems struggle with multi-hop reasoning where facts from disparate sources must be synthesized without hallucinating transitive relationships. This theoretical investigation explores deterministic verification state machines operating over graph-structured retrieval contexts.
+
+## Theoretical Architecture
+- **Verification Graph:** Directed acyclic graphs representing claim dependency chains
+- **Constraint Solver:** Semantic contradiction checkers testing output assertions against extracted source spans
+- **Fallback Circuit Breaker:** Explicit abstention when citation density falls below confidence bounds
+
+## Hypotheses & Validation Goals
+1. Deterministic sentence-level citation mapping can reduce ungrounded assertions by >90% compared to unconstrained prompt-level RAG.
+2. Latency overhead can be minimized through parallelized span-checking against dense chunk indices.
+
+## Current Status & Next Steps
+- Formalizing formal verification graph algebra.
+- Prototyping lightweight edge checkers for local model deployment.
