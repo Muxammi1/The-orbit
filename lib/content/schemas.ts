@@ -80,6 +80,7 @@ export const personChapterSchema = z.object({
   revealContent: z.string(),
   status: claimStatusSchema,
 });
+export type PersonChapter = z.infer<typeof personChapterSchema>;
 
 export const personSchema = z.object({
   statement: z.string(),
@@ -99,6 +100,7 @@ export const milestoneSchema = z.object({
   evidenceUrl: z.string().optional(),
   status: claimStatusSchema,
 });
+export type Milestone = z.infer<typeof milestoneSchema>;
 
 export const timelineSchema = z.object({
   milestones: z.array(milestoneSchema),
