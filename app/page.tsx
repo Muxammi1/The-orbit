@@ -36,17 +36,17 @@ export default function Home() {
       {/* Section 01: Entry (Hero) */}
       <EntryHero hero={hero} site={site} work={work} />
 
-      <Divider ringNumber="RING 02 / PERSON" />
+      <Divider />
 
       {/* Section 02: Person */}
       <PersonSection person={person} timeline={timeline} />
 
-      <Divider ringNumber="RING 03 / WORK" />
+      <Divider />
 
       {/* Section 03: Work */}
       <WorkSection work={work} />
 
-      <Divider ringNumber="RING 04 / TWIN" />
+      <Divider />
 
       {/* Section 04: Twin */}
       <TwinSection
@@ -55,17 +55,17 @@ export default function Home() {
         personaName={site.name.split(" ")[0] ?? "Muzammil"}
       />
 
-      <Divider ringNumber="RING 05 / STACK" />
+      <Divider />
 
       {/* Section 05: Stack */}
       <StackSection stack={stack} />
 
-      <Divider ringNumber="RING 06 / RESEARCH" />
+      <Divider />
 
       {/* Section 06: Research */}
       <ResearchSection research={research} />
 
-      <Divider ringNumber="RING 07 / CONNECT" />
+      <Divider />
 
       {/* Section 07: Connect */}
       <ConnectSection

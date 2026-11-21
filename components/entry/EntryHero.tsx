@@ -2,10 +2,10 @@
 
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/Button";
-import { Chip } from "@/components/ui/Chip";
-import { MonoLabel } from "@/components/ui/MonoLabel";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { DURATION, EASING } from "@/lib/motion";
+import { Stage } from "@/components/stage/Stage";
+import { HeroSculpture } from "@/scenes/hero/HeroSculpture";
 import type { HeroContent, SiteContent, WorkContent } from "@/lib/content/schemas";
 import { ArrowDown, ArrowUpRight, Compass } from "lucide-react";
 
@@ -34,7 +34,7 @@ export function EntryHero({ hero, site, work }: EntryHeroProps) {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
     visible: {
       opacity: 1,
       y: 0,
@@ -68,52 +68,40 @@ export function EntryHero({ hero, site, work }: EntryHeroProps) {
       id="entry"
       data-ring="01"
       aria-label="Section 01: Entry Hero"
-      className="relative min-h-[95vh] flex flex-col justify-between pt-28 sm:pt-36 pb-12 overflow-hidden"
+      className="relative min-h-[95vh] flex flex-col justify-between pt-20 sm:pt-28 pb-12 overflow-hidden"
     >
-      {/* Upper content grid: Left 7 columns text, right area transparent over 3D rings */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      {/* Two-column layout: Mobile = Stage on top (55vh) then text; Desktop = 42% text left, 58% 3D stage right */}
+      <div className="flex flex-col-reverse lg:flex-row items-center w-full min-h-[calc(100vh-10rem)]">
+        {/* Left: Text column (~42% desktop) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="lg:col-span-8 space-y-6 max-w-3xl"
+          className="w-full lg:w-[42%] flex flex-col justify-center space-y-6 z-10 py-6 lg:py-0"
         >
-          {/* Eyebrow / Role Line */}
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#171B22]/80 border border-[#252C35]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#B6E36A] shadow-[0_0_8px_#B6E36A]" />
-              <MonoLabel accent className="text-[11px]">
-                RING 01 / ENTRY
-              </MonoLabel>
-            </div>
-            <MonoLabel dimmed className="hidden sm:inline">
-              •
-            </MonoLabel>
-            <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#8C96A3]">
-              {hero.roleLine}
-            </span>
-          </motion.div>
-
-          {/* Name & Tagline */}
+          {/* Name: small, spaced */}
           <motion.div variants={itemVariants}>
-            <h1 className="sr-only">{hero.name} — {hero.roleLine}</h1>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#B6E36A] font-medium mb-1">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#B6E36A] font-medium">
               {hero.name}
             </p>
-            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-sans font-normal tracking-tight text-[#D9DEE5] leading-[1.05]">
-              {renderHeadline()}
-            </h2>
           </motion.div>
 
-          {/* Short Intro Bio */}
+          {/* Headline (max 3 lines) */}
+          <motion.div variants={itemVariants}>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-sans font-normal tracking-tight text-[#D9DEE5] leading-[1.08] max-w-xl">
+              {renderHeadline()}
+            </h1>
+          </motion.div>
+
+          {/* 2-line intro */}
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-lg text-[#8C96A3] font-normal leading-relaxed max-w-xl"
+            className="text-base text-[#8C96A3] font-normal leading-relaxed max-w-lg"
           >
             {hero.intro}
           </motion.p>
 
-          {/* CTAs */}
+          {/* Two Buttons */}
           <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 pt-2">
             <Button
               variant="primary"
@@ -138,16 +126,24 @@ export function EntryHero({ hero, site, work }: EntryHeroProps) {
           </motion.div>
         </motion.div>
 
-        {/* Right column remains transparent for the persistent 3D rings canvas */}
-        <div className="hidden lg:block lg:col-span-4 h-full pointer-events-none" aria-hidden="true" />
+        {/* Right: 3D Stage (~58% desktop, full viewport height, bleeding to right edge) */}
+        <div className="w-full lg:w-[58%] h-[55vh] lg:h-[88vh] relative flex items-center justify-center">
+          <Stage
+            camera={{ position: [0, 0.4, 8], fov: 32 }}
+            className="w-full h-full"
+            enable3D={site.featureFlags.enable3D}
+          >
+            <HeroSculpture />
+          </Stage>
+        </div>
       </div>
 
       {/* Bottom Status & Proof Strip */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: shouldReduceMotion ? 0 : 0.6, duration: DURATION.micro, ease: EASING.orbit }}
-        className="mt-16 pt-6 border-t border-[#252C35]/60 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs font-mono"
+        transition={{ delay: shouldReduceMotion ? 0 : 0.5, duration: DURATION.micro, ease: EASING.orbit }}
+        className="mt-8 pt-6 border-t border-[#252C35]/60 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs font-mono"
       >
         {/* Left: Scroll indicator & Location */}
         <div className="flex flex-wrap items-center gap-4 text-[#8C96A3]">
@@ -165,21 +161,18 @@ export function EntryHero({ hero, site, work }: EntryHeroProps) {
           </span>
         </div>
 
-        {/* Right: Featured proof chips & Optional availability status */}
-        <div className="flex flex-wrap items-center gap-2">
-          {site.featureFlags.showAvailabilityStatus && (
-            <Chip variant="accent" size="sm" dot>
-              {hero.availabilityText}
-            </Chip>
-          )}
-          <span className="hidden sm:inline font-mono text-[10px] text-[#8C96A3] uppercase tracking-wider mr-1">
+        {/* Right: Featured systems without cluttered chips */}
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="text-[10px] text-[#8C96A3] uppercase tracking-wider">
             Featured Systems:
           </span>
           {featuredProjects.map((project) => (
-            <a key={project.slug} href={`#work`}>
-              <Chip variant="verified" size="sm" dot className="hover:border-[#8C96A3]/60 transition-colors">
-                {project.title}
-              </Chip>
+            <a
+              key={project.slug}
+              href={`/work/${project.slug}`}
+              className="text-xs font-mono text-[#D9DEE5] hover:text-[#B6E36A] transition-colors"
+            >
+              {project.title} ↗
             </a>
           ))}
         </div>

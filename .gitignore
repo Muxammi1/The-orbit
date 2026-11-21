@@ -31,6 +31,7 @@ backend/.venv/
 .env*.local
 
 # misc & logs
+.playwright-mcp/
 .DS_Store
 npm-debug.log*
 yarn-debug.log*

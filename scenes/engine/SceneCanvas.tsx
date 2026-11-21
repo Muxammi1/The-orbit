@@ -1,15 +1,12 @@
 "use client";
 
-import { useEffect, Suspense } from "react";
+import { useSyncExternalStore, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
-import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
+import { View } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { useSceneStore } from "./useSceneStore";
 import { useSceneProgress } from "./useSceneProgress";
-import { RingsScene } from "../rings/RingsScene";
-import { AvatarScene } from "../avatar/AvatarScene";
-import { ConstellationScene } from "../constellation/ConstellationScene";
-import { Poster } from "@/components/media/Poster";
 
 export interface SceneCanvasProps {
   enable3D?: boolean;
@@ -17,65 +14,59 @@ export interface SceneCanvasProps {
   posterUrl?: string;
 }
 
+function subscribe() {
+  return () => {};
+}
+
+function getBody() {
+  return typeof document !== "undefined" ? document.body : undefined;
+}
+
+function getSSR() {
+  return undefined;
+}
+
 export function SceneCanvas({
   enable3D = true,
   enableSmoothScroll = false,
-  posterUrl,
 }: SceneCanvasProps) {
   useSceneProgress(enableSmoothScroll);
-  const { deviceTier, state, pointerInteractive } = useSceneStore();
+  const { deviceTier } = useSceneStore();
+  const eventSource = useSyncExternalStore(subscribe, getBody, getSSR);
 
-  const isWebGLDisabled = !enable3D || deviceTier === "low";
-
-  useEffect(() => {
-    const handleVisibility = () => {
-      // Automatic browser RAF pausing handles hidden tabs
-    };
-    document.addEventListener("visibilitychange", handleVisibility);
-    return () => document.removeEventListener("visibilitychange", handleVisibility);
-  }, []);
-
-  if (isWebGLDisabled) {
-    return <Poster posterUrl={posterUrl} alt="Static background poster (optimized mode)" />;
+  if (!enable3D || deviceTier === "low") {
+    return null;
   }
 
   const isHighTier = deviceTier === "high";
 
   return (
     <div
-      className="fixed inset-0 z-0 pointer-events-none select-none overflow-hidden"
-      style={{
-        pointerEvents: pointerInteractive ? "auto" : "none",
-      }}
+      className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
       aria-hidden="true"
     >
-      <Poster posterUrl={posterUrl} className="opacity-30" />
       <Canvas
-        frameloop="always"
+        eventSource={eventSource}
+        frameloop="demand"
         dpr={[1, 1.5]}
-        camera={{ position: [0, 0, 7.5], fov: 45 }}
         gl={{
           antialias: true,
           powerPreference: "high-performance",
           toneMapping: THREE.ACESFilmicToneMapping,
+          alpha: true,
         }}
-        onCreated={({ gl }) => {
-          gl.setClearColor(0x000000, 0);
-        }}
+        className="w-full h-full"
       >
         <Suspense fallback={null}>
-          {(state === "rings" || state === "dim") && <RingsScene />}
-          {state === "avatar" && <AvatarScene />}
-          {state === "constellation" && <ConstellationScene />}
-
+          <View.Port />
           {isHighTier && (
-            <EffectComposer multisampling={0}>
+            <EffectComposer autoClear={false} renderPriority={2} multisampling={0}>
               <Bloom
-                luminanceThreshold={0.7}
-                luminanceSmoothing={0.3}
+                luminanceThreshold={1.0}
+                luminanceSmoothing={0.2}
                 intensity={0.6}
+                mipmapBlur
               />
-              <Vignette offset={0.1} darkness={0.6} />
             </EffectComposer>
           )}
         </Suspense>

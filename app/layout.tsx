@@ -4,6 +4,7 @@ import "./globals.css";
 import { NavigationShell } from "@/components/navigation/NavigationShell";
 import { SceneShell } from "@/components/SceneShell";
 import { SkipLink } from "@/components/ui/SkipLink";
+import { DevPlaceholderOverlay } from "@/components/dev/DevPlaceholderOverlay";
 import {
   getSiteContent,
   getNavigationContent,
@@ -93,6 +94,7 @@ export default function RootLayout({
           caseStudies={caseStudies}
           researchEntries={researchEntries}
         />
+        <DevPlaceholderOverlay />
         <div className="relative z-10">{children}</div>
       </body>
     </html>

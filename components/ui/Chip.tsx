@@ -14,6 +14,12 @@ export function Chip({
   dot = false,
   ...props
 }: ChipProps) {
+  // If in production/public view and NEXT_PUBLIC_SHOW_PLACEHOLDERS is not true, hide draft/placeholder chips
+  const showPlaceholders = process.env.NEXT_PUBLIC_SHOW_PLACEHOLDERS === "true";
+  if (variant === "placeholder" && !showPlaceholders) {
+    return null;
+  }
+
   const baseStyles =
     "inline-flex items-center font-mono font-medium uppercase tracking-wider rounded-full select-none";
 
