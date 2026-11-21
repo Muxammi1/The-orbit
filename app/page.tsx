@@ -4,7 +4,7 @@ import { WorkSection } from "@/components/work/WorkSection";
 import { TwinSection } from "@/components/twin/TwinSection";
 import { StackSection } from "@/components/stack/StackSection";
 import { ResearchSection } from "@/components/research/ResearchSection";
-import { SectionHeader } from "@/components/ui/SectionHeader";
+import { ConnectSection } from "@/components/connect/ConnectSection";
 import { Divider } from "@/components/ui/Divider";
 import {
   getHeroContent,
@@ -16,6 +16,7 @@ import {
   getTwinFallbackAnswers,
   getStackContent,
   getResearchContent,
+  getConnectContent,
 } from "@/lib/content/loaders";
 
 export default function Home() {
@@ -28,10 +29,7 @@ export default function Home() {
   const twinFallback = getTwinFallbackAnswers();
   const stack = getStackContent();
   const research = getResearchContent();
-
-  const remainingSections = [
-    { id: "connect", ring: "RING 07 / CONNECT", title: "Start the Next Question", serif: "Question" },
-  ];
+  const connect = getConnectContent();
 
   return (
     <main id="main-content" className="shell space-y-24">
@@ -69,22 +67,11 @@ export default function Home() {
 
       <Divider ringNumber="RING 07 / CONNECT" />
 
-      {/* Remaining sections */}
-      {remainingSections.map((section, idx) => (
-        <section
-          key={section.id}
-          id={section.id}
-          data-ring={String(idx + 7).padStart(2, "0")}
-          className="min-h-[50vh] flex flex-col justify-center scroll-mt-24 border border-[#252C35]/30 p-8 sm:p-12 rounded-sm bg-[#0E1117]/30"
-        >
-          <SectionHeader
-            ringNumber={section.ring}
-            title={section.title}
-            serifWord={section.serif}
-            subtitle="Section foundation ready for interactive layer integration."
-          />
-        </section>
-      ))}
+      {/* Section 07: Connect */}
+      <ConnectSection
+        connect={connect}
+        showAvailabilityStatus={site.featureFlags.showAvailabilityStatus}
+      />
     </main>
   );
 }
