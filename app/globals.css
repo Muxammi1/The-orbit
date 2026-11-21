@@ -13,6 +13,37 @@ body {
   color: #D9DEE5;
   color-scheme: dark;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Themed Selection */
+::selection {
+  background-color: #B6E36A;
+  color: #08090C;
+}
+
+/* Themed Input Caret */
+input, textarea {
+  caret-color: #B6E36A;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #08090C;
+}
+::-webkit-scrollbar-thumb {
+  background: #252C35;
+  border-radius: 9999px;
+  border: 1px solid #08090C;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #363F4C;
 }
 
 /* 12-column Grid & Shell Layout Container */
@@ -21,12 +52,17 @@ body {
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(18px, 6vw, 80px);
-  padding-right: clamp(18px, 6vw, 80px);
+  padding-left: clamp(20px, 6vw, 80px);
+  padding-right: clamp(20px, 6vw, 80px);
 }
 
 /* Accessible focus visible styles */
 *:focus-visible {
   outline: 2px solid #B6E36A;
   outline-offset: 2px;
+}
+
+/* Monospace numeric alignment */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }

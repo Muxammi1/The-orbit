@@ -47,6 +47,7 @@ function matchFallback(
     q3: ["research", "exploring", "questions", "inquiries"],
     q4: ["individuality", "combine", "philosophy", "personal"],
     q5: ["ambitious", "project", "greenlink", "most ambitious"],
+    q6: ["hardware", "constraint", "constraints", "telemetry", "power", "ram", "mcu", "embedded"],
   };
   for (const [id, keywords] of Object.entries(keyMap)) {
     if (keywords.some((kw) => lower.includes(kw))) {

@@ -32,7 +32,7 @@ export default function Home() {
   const connect = getConnectContent();
 
   return (
-    <main id="main-content" className="shell space-y-24">
+    <main id="main-content" className="shell space-y-28 sm:space-y-36">
       {/* Section 01: Entry (Hero) */}
       <EntryHero hero={hero} site={site} work={work} />
 
