@@ -8,6 +8,7 @@ import { useSceneStore } from "./useSceneStore";
 import { useSceneProgress } from "./useSceneProgress";
 import { RingsScene } from "../rings/RingsScene";
 import { AvatarScene } from "../avatar/AvatarScene";
+import { ConstellationScene } from "../constellation/ConstellationScene";
 import { Poster } from "@/components/media/Poster";
 
 export interface SceneCanvasProps {
@@ -65,6 +66,7 @@ export function SceneCanvas({
         <Suspense fallback={null}>
           {(state === "rings" || state === "dim") && <RingsScene />}
           {state === "avatar" && <AvatarScene />}
+          {state === "constellation" && <ConstellationScene />}
 
           {isHighTier && (
             <EffectComposer multisampling={0}>

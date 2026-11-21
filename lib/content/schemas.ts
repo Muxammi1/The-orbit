@@ -163,6 +163,7 @@ export const stackNodeSchema = z.object({
   repoUrls: z.array(z.string()),
   status: claimStatusSchema,
 });
+export type StackNode = z.infer<typeof stackNodeSchema>;
 
 export const stackClusterSchema = z.object({
   id: z.string(),

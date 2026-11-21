@@ -2,6 +2,7 @@ import { EntryHero } from "@/components/entry/EntryHero";
 import { PersonSection } from "@/components/person/PersonSection";
 import { WorkSection } from "@/components/work/WorkSection";
 import { TwinSection } from "@/components/twin/TwinSection";
+import { StackSection } from "@/components/stack/StackSection";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Divider } from "@/components/ui/Divider";
 import {
@@ -12,6 +13,7 @@ import {
   getTimelineContent,
   getTwinQuestions,
   getTwinFallbackAnswers,
+  getStackContent,
 } from "@/lib/content/loaders";
 
 export default function Home() {
@@ -22,9 +24,9 @@ export default function Home() {
   const timeline = getTimelineContent();
   const twinQuestions = getTwinQuestions();
   const twinFallback = getTwinFallbackAnswers();
+  const stack = getStackContent();
 
   const remainingSections = [
-    { id: "stack", ring: "RING 05 / STACK", title: "Constellation of Systems", serif: "Systems" },
     { id: "research", ring: "RING 06 / RESEARCH", title: "Inquiries at the Physical Boundary", serif: "Boundary" },
     { id: "connect", ring: "RING 07 / CONNECT", title: "Start the Next Question", serif: "Question" },
   ];
@@ -55,12 +57,17 @@ export default function Home() {
 
       <Divider ringNumber="RING 05 / STACK" />
 
+      {/* Section 05: Stack */}
+      <StackSection stack={stack} />
+
+      <Divider ringNumber="RING 06 / RESEARCH" />
+
       {/* Remaining sections */}
       {remainingSections.map((section, idx) => (
         <section
           key={section.id}
           id={section.id}
-          data-ring={String(idx + 5).padStart(2, "0")}
+          data-ring={String(idx + 6).padStart(2, "0")}
           className="min-h-[50vh] flex flex-col justify-center scroll-mt-24 border border-[#252C35]/30 p-8 sm:p-12 rounded-sm bg-[#0E1117]/30"
         >
           <SectionHeader
@@ -71,7 +78,7 @@ export default function Home() {
           />
           {idx < remainingSections.length - 1 && (
             <Divider
-              ringNumber={`RING ${String(idx + 6).padStart(2, "0")} / ${remainingSections[idx + 1]?.id.toUpperCase()}`}
+              ringNumber={`RING ${String(idx + 7).padStart(2, "0")} / ${remainingSections[idx + 1]?.id.toUpperCase()}`}
               className="mt-16 mb-0"
             />
           )}
