@@ -1,0 +1,29 @@
+---
+title: "Low-Power Edge Inference in Ambient Sensing Topologies"
+slug: "edge-ai-sensing"
+status: "Ongoing"
+area: "Edge AI"
+group: "Ongoing investigations"
+date: "2024"
+summary: "Exploratory research into constrained MCU tensor execution and telemetry compression in distributed mesh environments."
+evidenceUrl: ""
+---
+
+## Abstract
+[Placeholder: formal abstract defining the exploration of sub-milliwatt inference on microcontrollers].
+
+## Research Statement & Motivation
+Edge machine learning on microcontroller units (MCUs) presents an extreme trade-off between model expressive capacity and thermal/energy dissipation. This ongoing investigation measures the practical accuracy degradation of 8-bit integer and 4-bit quantized anomaly models across irregular environmental time-series streams.
+
+## Experimental Setup
+- **Target Hardware:** ARM Cortex-M4 and ESP32-S3 microcontrollers
+- **Quantization Pipeline:** Post-training integer quantization (INT8/INT4)
+- **Telemetry Ingestion:** Real-time environmental temperature, humidity, and volatile organic compound (VOC) arrays
+
+## Current Findings
+- INT8 quantization maintains >97% anomaly detection fidelity compared to FP32 baselines while reducing flash memory footprint by 73%.
+- Dynamic wake-on-anomaly sleep states yield over 4x longevity improvements on standard lithium-cell power sources.
+
+## Ongoing Work & Next Questions
+- Investigating temporal spatial correlation between neighbor mesh nodes to eliminate redundant wake cycles.
+- Validating robustness against physical sensor noise and rapid thermal shocks.

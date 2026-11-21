@@ -1,0 +1,63 @@
+---
+title: "GreenLink+"
+slug: "greenlink"
+discipline: "edge-intelligence"
+tagline: "Real-time edge environmental intelligence and sensor telemetry system."
+date: "2024"
+status: "placeholder"
+featured: true
+repoUrl: "https://github.com/example/greenlink"
+demoUrl: ""
+cover: "/media/greenlink-cover.jpg"
+evidenceUrl: ""
+techStack: ["Python", "FastAPI", "TensorFlow Lite", "MQTT", "Docker", "PostgreSQL"]
+---
+
+## Overview
+[Placeholder: high-level summary of GreenLink+ as a low-power environmental edge intelligence network].
+
+## Problem
+Traditional environmental telemetry architectures rely on continuous high-bandwidth cloud uplinks, which fail in remote or intermittent network conditions and incur prohibitive transmission latency.
+
+## Objectives
+- Deploy low-power sensory nodes capable of local edge inference.
+- Maintain persistent buffering during connectivity outages.
+- Provide sub-second alerting for localized environmental threshold anomalies.
+
+## Architecture
+The system consists of distributed hardware sensor nodes communicating over a local mesh/MQTT broker, feeding into an on-premise gateway running FastAPI and a lightweight time-series storage engine.
+
+```
+[ Sensor Node (MCU) ] ---> (MQTT) ---> [ Edge Gateway (FastAPI) ] ---> [ Telemetry DB ]
+                                                 |
+                                         [ TFLite Inference ]
+```
+
+## Tech stack
+- **Edge Inference:** TensorFlow Lite / Micro
+- **Ingestion & API:** FastAPI, Pydantic, Python 3.12
+- **Protocols:** MQTT, WebSockets
+- **Containerization:** Docker multi-stage builds
+
+## Engineering decisions
+- **MQTT over HTTP Polling:** Reduced payload overhead by 68% and enabled instantaneous pub/sub notification.
+- *Rejected Alternative:* Direct HTTP REST post from edge MCUs was rejected due to socket handshake overhead and memory consumption on microcontrollers.
+- **SQLite/DuckDB Edge Buffer over Direct Remote Sync:** Isolated nodes from cloud latency and preserved telemetry integrity during disconnects.
+
+## Implementation
+[Placeholder: detailed description of firmware implementation, queue workers, and edge model quantization].
+
+## Results
+Results pending verification.
+
+## Limitations
+- Current battery life under continuous cellular uplink is limited to 72 hours without solar harvesting.
+- Sensor drift requires periodic recalibration cycles.
+
+## Future improvements
+- Implement solar energy harvesting circuitry with power-aware sleep scheduling.
+- Quantize anomaly detection weights to 4-bit integer representations for ultra-low power execution.
+
+## Links
+- [Repository: GitHub (Placeholder)](https://github.com/example/greenlink)
+- [Architecture Diagram (Placeholder)](/media/greenlink-arch.svg)

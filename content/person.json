@@ -1,0 +1,45 @@
+{
+  "statement": "[Placeholder: one-paragraph statement summarizing Muzammil's driving philosophy of systems thinking and intelligence]",
+  "chapters": [
+    {
+      "id": "c1",
+      "number": "01",
+      "title": "Curiosity",
+      "headline": "First principles and systematic inquiry",
+      "content": "[Placeholder: narrative on foundational curiosity and mathematical/engineering origins]",
+      "revealLabel": "Read inquiry notes",
+      "revealContent": "[Placeholder: expanded perspective on technical inquiry and problem formulation]",
+      "status": "placeholder"
+    },
+    {
+      "id": "c2",
+      "number": "02",
+      "title": "Engineering",
+      "headline": "Architecting resilient, production-grade intelligence",
+      "content": "[Placeholder: narrative on engineering standards, latency constraints, and distributed systems]",
+      "revealLabel": "Engineering principles",
+      "revealContent": "[Placeholder: detailed principles regarding clean interfaces and reliable system execution]",
+      "status": "placeholder"
+    },
+    {
+      "id": "c3",
+      "number": "03",
+      "title": "Research",
+      "headline": "Exploring retrieval, perception, and edge autonomy",
+      "content": "[Placeholder: narrative on research exploration, literature depth, and experimental rigor]",
+      "revealLabel": "Research methodology",
+      "revealContent": "[Placeholder: details on controlled benchmarking and hypothesis-driven evaluation]",
+      "status": "placeholder"
+    },
+    {
+      "id": "c4",
+      "number": "04",
+      "title": "Individuality",
+      "headline": "Perspectives beyond the terminal",
+      "content": "[Placeholder: narrative on personal interests, design discipline, and worldview]",
+      "revealLabel": "Personal dimensions",
+      "revealContent": "[Placeholder: additional context on hobbies, reading, and interdisciplinary pursuits]",
+      "status": "placeholder"
+    }
+  ]
+}

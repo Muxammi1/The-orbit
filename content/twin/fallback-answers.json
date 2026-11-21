@@ -1,0 +1,38 @@
+{
+  "answers": {
+    "q1": {
+      "id": "q1",
+      "answer": "Muzammil focuses on high-reliability intelligent systems, notably GreenLink+ (an edge environmental sensor network) and real-time visual perception architectures for institutional monitoring. Both systems emphasize low-latency processing and edge resilience.",
+      "sources": ["from: GreenLink+ case study", "from: Visual Intelligence case study"]
+    },
+    "q2": {
+      "id": "q2",
+      "answer": "His experience in AI architecture spans Retrieval-Augmented Generation (RAG) pipelines, deterministic agent state machines, and hardware-constrained edge vision pipelines using PyTorch, OpenCV, and TensorRT/TFLite.",
+      "sources": ["from: System Stack", "from: Intelligent Systems Discipline"]
+    },
+    "q3": {
+      "id": "q3",
+      "answer": "Muzammil's research inquiries concentrate on low-power edge intelligence, verifiable multi-hop retrieval pipelines, and environmental telemetry networks. All current research items are classified as Ongoing or Exploratory.",
+      "sources": ["from: Research Statement", "from: Edge AI Sensing Entry"]
+    },
+    "q4": {
+      "id": "q4",
+      "answer": "Muzammil works primarily with Python, PyTorch, OpenCV, FastAPI, and Docker for core AI/ML systems, alongside Next.js, TypeScript, and SQL for interactive verification interfaces.",
+      "sources": ["from: Stack Constellation", "from: Engineering Timeline"]
+    },
+    "q5": {
+      "id": "q5",
+      "answer": "Muzammil's academic journey centers on systems engineering and computer intelligence, with active preparation for advanced graduate research in intelligent systems.",
+      "sources": ["from: Timeline Milestones", "from: Academic Statement"]
+    },
+    "q6": {
+      "id": "q6",
+      "answer": "You can connect with Muzammil directly through the Connect section on this site, or via his verified LinkedIn and GitHub profiles.",
+      "sources": ["from: Connect Ring", "from: Site Configuration"]
+    }
+  },
+  "defaultFallback": {
+    "answer": "Muzammil has not documented that specific detail in my offline knowledge base yet. You can submit your question directly through the Connect section form or reach him by email.",
+    "sources": ["from: Fallback Engine"]
+  }
+}

@@ -1,0 +1,59 @@
+---
+title: "Institutional Examination Monitoring System"
+slug: "example-vision-system"
+discipline: "visual-intelligence"
+tagline: "Privacy-preserving edge video analytics pipeline for academic examination halls."
+date: "2024"
+status: "placeholder"
+featured: true
+repoUrl: ""
+demoUrl: ""
+cover: "/media/vision-cover.jpg"
+evidenceUrl: ""
+techStack: ["Python", "PyTorch", "OpenCV", "YOLO", "Docker", "Linux"]
+---
+
+> **Institutional Disclosure Note:**
+> In accordance with university data governance and privacy policies, all camera locations, network topologies, student identifiers, and proprietary room geometries have been strictly redacted. Only generalized architectural and algorithmic patterns are discussed.
+
+## Overview
+[Placeholder: overview of the computer vision monitoring pipeline designed for automated integrity logging].
+
+## Problem
+Large-scale examination venues require high human proctor overhead while introducing subjective variance and fatigue in monitoring protocol enforcement.
+
+## Objectives
+- Implement real-time multi-stream video ingestion across localized venue cameras.
+- Detect spatial movement anomalies and unauthorized device usage with low false-positive rates.
+- Maintain total on-premise processing to guarantee student privacy (zero cloud streaming).
+
+## Architecture
+Local IP camera streams are ingested via RTSP into a high-throughput video pipeline that performs frame-level spatial inference using optimized YOLO models on edge accelerators.
+
+## Tech stack
+- **Perception:** OpenCV, YOLOv8, PyTorch
+- **Stream Ingestion:** GStreamer / RTSP
+- **Inference Runtime:** TensorRT / ONNX Runtime
+- **Platform:** Ubuntu LTS, Docker, NVIDIA Jetson / Edge GPU
+
+## Engineering decisions
+- **Local On-Premise GPU Inference over Cloud Streaming:** Absolute privacy requirement — no raw video frames are ever permitted to leave the physical institution network.
+- *Rejected Alternative:* Cloud-based computer vision APIs were evaluated and formally rejected due to student privacy compliance, bandwidth constraints, and egress costs.
+- **Bounding-Box Stream Logging over Full Video Recording:** Only spatial metadata and event timestamps are archived; raw video is flushed after sliding temporal verification windows.
+
+## Implementation
+[Placeholder: details on multi-threaded frame queue management, temporal non-maximum suppression, and GPU batch scheduling].
+
+## Results
+Results pending verification.
+
+## Limitations
+- Extreme lighting variances or sharp direct sunlight can occasionally affect detection confidence.
+- Occlusion in multi-row tiered auditoriums requires multi-angle camera triangulation.
+
+## Future improvements
+- Multi-camera re-identification across overlapping venue angles.
+- Integration with edge thermal perception sensors for ambient condition tracking.
+
+## Links
+- [System Technical Specification (Redacted)](/media/vision-spec-redacted.pdf)

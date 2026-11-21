@@ -1,0 +1,37 @@
+{
+  "name": "Muzammil Yasir",
+  "roleLine": "AI ENGINEER / RESEARCHER / SYSTEMS THINKER",
+  "tagline": "An Exploration of Intelligence.",
+  "location": "[Placeholder: Location / Timezone]",
+  "email": "contact@example.com",
+  "domain": "https://orbit.local",
+  "cvFilePath": "/cv/Muzammil_Yasir_CV.pdf",
+  "social": {
+    "github": "https://github.com/example",
+    "linkedin": "https://linkedin.com/in/example"
+  },
+  "featureFlags": {
+    "enable3D": true,
+    "enableAmbientVideo": true,
+    "enableTwin": true,
+    "enableSmoothScroll": false,
+    "enableCommandCenter": true,
+    "showAvailabilityStatus": false
+  },
+  "seo": {
+    "title": "ORBIT — Muzammil Yasir | AI Engineer & Systems Thinker",
+    "description": "An Exploration of Intelligence. Personal portfolio, research systems, and architectural work of Muzammil Yasir.",
+    "keywords": [
+      "AI Engineer",
+      "Systems Architecture",
+      "Machine Learning",
+      "Edge AI",
+      "Computer Vision",
+      "RAG"
+    ]
+  },
+  "analytics": {
+    "enablePlausible": false,
+    "domain": ""
+  }
+}

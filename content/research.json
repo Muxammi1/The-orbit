@@ -1,0 +1,31 @@
+{
+  "statement": "[Placeholder: one-page research statement articulating core inquiries into edge perception, agentic verification, and autonomous sensor networks]",
+  "areas": [
+    "Retrieval-Augmented Generation",
+    "Intelligent agents",
+    "Computer vision",
+    "Edge AI",
+    "Environmental intelligence",
+    "AI system architecture"
+  ],
+  "entries": [
+    {
+      "slug": "edge-ai-sensing",
+      "title": "Low-Power Edge Inference in Ambient Sensing Topologies",
+      "status": "Ongoing",
+      "area": "Edge AI",
+      "group": "Ongoing investigations",
+      "summary": "[Placeholder: exploratory research into constrained MCU tensor execution and telemetry compression]",
+      "evidenceUrl": ""
+    },
+    {
+      "slug": "agentic-retrieval-verification",
+      "title": "Self-Correcting Retrieval Architectures for High-Stakes Grounding",
+      "status": "Exploratory",
+      "area": "Retrieval-Augmented Generation",
+      "group": "Future directions",
+      "summary": "[Placeholder: theoretical investigation into citation verifiability and multi-hop retrieval paths]",
+      "evidenceUrl": ""
+    }
+  ]
+}

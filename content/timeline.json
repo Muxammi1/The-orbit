@@ -1,0 +1,67 @@
+{
+  "milestones": [
+    {
+      "id": "m1",
+      "category": "academic",
+      "title": "[Placeholder: Degree / Academic Milestone]",
+      "date": "[Placeholder: Year / Period]",
+      "organization": "[Placeholder: University / Institution]",
+      "role": "[Placeholder: Student / Graduate Researcher]",
+      "responsibilities": [
+        "[Placeholder: primary academic coursework or focus]",
+        "[Placeholder: academic honors or thesis area]"
+      ],
+      "contributions": [
+        "[Placeholder: specific academic project or contribution]"
+      ],
+      "status": "placeholder"
+    },
+    {
+      "id": "m2",
+      "category": "professional",
+      "title": "[Placeholder: Engineering Role / Initiative]",
+      "date": "[Placeholder: Year / Period]",
+      "organization": "[Placeholder: Company / Organization]",
+      "role": "[Placeholder: AI Engineer / Systems Developer]",
+      "responsibilities": [
+        "[Placeholder: key system design responsibility]",
+        "[Placeholder: deployment and monitoring scope]"
+      ],
+      "contributions": [
+        "[Placeholder: measurable engineering deliverable]"
+      ],
+      "status": "placeholder"
+    },
+    {
+      "id": "m3",
+      "category": "research",
+      "title": "Edge Intelligence & Environmental Sensing",
+      "date": "2024 - Present",
+      "organization": "[Placeholder: Lab / Research Group]",
+      "role": "Lead Researcher",
+      "responsibilities": [
+        "Architecting distributed sensor ingestion networks",
+        "Validating low-power inference on embedded edge nodes"
+      ],
+      "contributions": [
+        "Development of the GreenLink+ sensor mesh architecture"
+      ],
+      "status": "placeholder"
+    },
+    {
+      "id": "m4",
+      "category": "academic",
+      "title": "Advanced Graduate Studies",
+      "date": "Planned 2025/2026",
+      "organization": "[Placeholder: Prospective Graduate School]",
+      "role": "MSc / PhD Candidate",
+      "responsibilities": [
+        "Deep investigation into agentic retrieval and perception architectures"
+      ],
+      "contributions": [
+        "Publishing peer-reviewed contributions in machine intelligence"
+      ],
+      "status": "planned"
+    }
+  ]
+}

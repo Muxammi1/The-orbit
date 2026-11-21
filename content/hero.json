@@ -1,0 +1,13 @@
+{
+  "name": "MUZAMMIL YASIR",
+  "roleLine": "AI ENGINEER / RESEARCHER / SYSTEMS THINKER",
+  "headline": "I build systems that see, retrieve and sense.",
+  "serifWord": "sense",
+  "intro": "[Placeholder: short professional introduction stating focus across intelligent systems, perception, and edge computing]",
+  "status": "placeholder",
+  "availabilityText": "[Placeholder: current availability for international roles and research collaboration]",
+  "ctas": {
+    "primary": { "label": "Explore my work", "href": "#work" },
+    "secondary": { "label": "Download CV", "href": "/cv/Muzammil_Yasir_CV.pdf" }
+  }
+}

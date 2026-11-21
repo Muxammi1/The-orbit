@@ -1,0 +1,34 @@
+{
+  "entry": {
+    "video": "/media/entry-flow.mp4",
+    "poster": "/media/entry-poster.jpg",
+    "mobilePoster": "/media/entry-poster-mobile.jpg",
+    "alt": "Atmospheric cinematic lighting background for ORBIT entry"
+  },
+  "person": {
+    "poster": "/media/portrait.jpg",
+    "alt": "Portrait of Muzammil Yasir"
+  },
+  "work": {
+    "poster": "/media/work-poster.jpg",
+    "alt": "Work overview atmospheric background"
+  },
+  "twin": {
+    "video": "/media/twin-flow.mp4",
+    "poster": "/media/twin-poster.jpg",
+    "alt": "Twin avatar atmospheric background"
+  },
+  "stack": {
+    "poster": "/media/stack-poster.jpg",
+    "alt": "Stack constellation background"
+  },
+  "research": {
+    "poster": "/media/research-poster.jpg",
+    "alt": "Research inquiry background"
+  },
+  "connect": {
+    "video": "/media/connect-flow.mp4",
+    "poster": "/media/connect-poster.jpg",
+    "alt": "Connect converge background"
+  }
+}

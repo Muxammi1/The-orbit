@@ -1,0 +1,79 @@
+{
+  "disciplines": [
+    {
+      "id": "intelligent-systems",
+      "index": "01",
+      "title": "INTELLIGENT SYSTEMS",
+      "summary": "[Placeholder: summary of RAG architectures and autonomous agent orchestration]",
+      "topics": [
+        "RAG applications",
+        "AI agents",
+        "Enterprise knowledge systems",
+        "Intelligent automation"
+      ],
+      "projects": []
+    },
+    {
+      "id": "visual-intelligence",
+      "index": "02",
+      "title": "VISUAL INTELLIGENCE",
+      "summary": "[Placeholder: summary of multi-camera surveillance and edge visual perception systems]",
+      "topics": [
+        "Surveillance systems",
+        "Examination monitoring",
+        "AI attendance",
+        "Computer vision applications"
+      ],
+      "projects": ["example-vision-system"]
+    },
+    {
+      "id": "predictive-intelligence",
+      "index": "03",
+      "title": "PREDICTIVE INTELLIGENCE",
+      "summary": "[Placeholder: summary of statistical models and time-series forecasting pipelines]",
+      "topics": [
+        "Machine learning",
+        "Predictive analytics",
+        "Classification and forecasting"
+      ],
+      "projects": []
+    },
+    {
+      "id": "edge-intelligence",
+      "index": "04",
+      "title": "EDGE INTELLIGENCE",
+      "summary": "Distributed environmental telemetry and low-power sensory computing at the physical edge.",
+      "topics": [
+        "GreenLink+",
+        "Environmental monitoring",
+        "Edge computing",
+        "IoT and distributed intelligence"
+      ],
+      "projects": ["greenlink"]
+    }
+  ],
+  "projects": [
+    {
+      "slug": "greenlink",
+      "title": "GreenLink+",
+      "discipline": "edge-intelligence",
+      "tagline": "Real-time edge environmental intelligence and sensor telemetry system.",
+      "status": "placeholder",
+      "featured": true,
+      "repoUrl": "https://github.com/example/greenlink",
+      "demoUrl": "",
+      "cover": ""
+    },
+    {
+      "slug": "example-vision-system",
+      "title": "Institutional Examination Monitoring System",
+      "discipline": "visual-intelligence",
+      "tagline": "Privacy-preserving edge video analytics pipeline for academic examination halls.",
+      "status": "placeholder",
+      "featured": true,
+      "repoUrl": "",
+      "demoUrl": "",
+      "cover": ""
+    }
+  ]
+}

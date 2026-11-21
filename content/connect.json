@@ -1,0 +1,43 @@
+{
+  "headline": "Every meaningful system begins with a question. Let's explore the next one.",
+  "serifWord": "question",
+  "subheadline": "Open to high-impact engineering roles, research collaborations, and systems architecture initiatives.",
+  "reasons": [
+    "General Inquiry",
+    "Professional Opportunity",
+    "Research Collaboration",
+    "Technical Discussion"
+  ],
+  "directLinks": [
+    {
+      "label": "Email",
+      "href": "mailto:contact@example.com",
+      "type": "contact"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://linkedin.com/in/example",
+      "type": "social"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/example",
+      "type": "social"
+    },
+    {
+      "label": "Download CV",
+      "href": "/cv/Muzammil_Yasir_CV.pdf",
+      "type": "document"
+    },
+    {
+      "label": "Research Collaboration",
+      "href": "mailto:contact@example.com?subject=Research%20Collaboration",
+      "type": "collaboration"
+    },
+    {
+      "label": "Professional Opportunities",
+      "href": "mailto:contact@example.com?subject=Professional%20Opportunity",
+      "type": "opportunity"
+    }
+  ]
+}

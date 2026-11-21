@@ -1,0 +1,16 @@
+{
+  "items": [
+    { "id": "entry", "label": "Entry", "ring": "RING 01", "href": "#entry" },
+    { "id": "person", "label": "Person", "ring": "RING 02", "href": "#person" },
+    { "id": "work", "label": "Work", "ring": "RING 03", "href": "#work" },
+    { "id": "twin", "label": "Twin", "ring": "RING 04", "href": "#twin" },
+    { "id": "stack", "label": "Stack", "ring": "RING 05", "href": "#stack" },
+    { "id": "research", "label": "Research", "ring": "RING 06", "href": "#research" },
+    { "id": "connect", "label": "Connect", "ring": "RING 07", "href": "#connect" }
+  ],
+  "actions": [
+    { "id": "cmd", "label": "Command Center", "shortcut": "⌘K", "href": "#command" },
+    { "id": "cv", "label": "CV", "shortcut": "CV", "href": "/cv" },
+    { "id": "contact", "label": "Connect", "href": "#connect" }
+  ]
+}

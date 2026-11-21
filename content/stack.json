@@ -1,0 +1,252 @@
+{
+  "clusters": [
+    { "id": "ai-ml", "label": "AI / MACHINE LEARNING" },
+    { "id": "llm-eng", "label": "LLM ENGINEERING" },
+    { "id": "computer-vision", "label": "COMPUTER VISION" },
+    { "id": "backend", "label": "BACKEND ENGINEERING" },
+    { "id": "infrastructure", "label": "INFRASTRUCTURE" }
+  ],
+  "nodes": [
+    {
+      "id": "python",
+      "label": "Python",
+      "cluster": "ai-ml",
+      "description": "Primary computational and systems language for machine intelligence.",
+      "usedIn": ["greenlink", "example-vision-system"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "pytorch",
+      "label": "PyTorch",
+      "cluster": "ai-ml",
+      "description": "Deep learning tensor framework for model adaptation and training.",
+      "usedIn": ["example-vision-system"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "tensorflow",
+      "label": "TensorFlow",
+      "cluster": "ai-ml",
+      "description": "Graph execution and TFLite embedded deployment.",
+      "usedIn": ["greenlink"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "scikit-learn",
+      "label": "Scikit-learn",
+      "cluster": "ai-ml",
+      "description": "Classical machine learning pipelines, regression, and clustering.",
+      "usedIn": [],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "rag",
+      "label": "RAG",
+      "cluster": "llm-eng",
+      "description": "Retrieval-Augmented Generation workflows and chunking strategies.",
+      "usedIn": [],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "llm-apis",
+      "label": "LLM APIs",
+      "cluster": "llm-eng",
+      "description": "Structured prompting and tool-calling with Anthropic, OpenAI, and local models.",
+      "usedIn": [],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "embeddings",
+      "label": "Embeddings",
+      "cluster": "llm-eng",
+      "description": "High-dimensional dense vector representations and similarity scoring.",
+      "usedIn": [],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "vector-databases",
+      "label": "Vector databases",
+      "cluster": "llm-eng",
+      "description": "ChromaDB and indexed approximate nearest neighbor retrieval.",
+      "usedIn": [],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "ai-agents",
+      "label": "AI agents",
+      "cluster": "llm-eng",
+      "description": "State machine based multi-agent systems and task decomposition.",
+      "usedIn": [],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "opencv",
+      "label": "OpenCV",
+      "cluster": "computer-vision",
+      "description": "Real-time spatial filtering, edge detection, and frame buffering.",
+      "usedIn": ["example-vision-system"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "yolo",
+      "label": "YOLO",
+      "cluster": "computer-vision",
+      "description": "Single-stage bounding box object detection and tracking.",
+      "usedIn": ["example-vision-system"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "object-detection",
+      "label": "Object detection",
+      "cluster": "computer-vision",
+      "description": "Temporal tracking and multi-class spatial localization.",
+      "usedIn": ["example-vision-system"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "video-analytics",
+      "label": "Video analytics",
+      "cluster": "computer-vision",
+      "description": "Stream-based processing pipelines with GPU acceleration.",
+      "usedIn": ["example-vision-system"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "fastapi",
+      "label": "FastAPI",
+      "cluster": "backend",
+      "description": "Asynchronous REST services and streaming SSE endpoints.",
+      "usedIn": ["greenlink"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "rest-apis",
+      "label": "REST APIs",
+      "cluster": "backend",
+      "description": "Typed contracts and deterministic endpoint design.",
+      "usedIn": ["greenlink"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "sql",
+      "label": "SQL",
+      "cluster": "backend",
+      "description": "Relational schema design, transactions, and performance indexing.",
+      "usedIn": ["greenlink"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "redis",
+      "label": "Redis",
+      "cluster": "backend",
+      "description": "In-memory caching and publish-subscribe message buffering.",
+      "usedIn": [],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "kafka",
+      "label": "Kafka",
+      "cluster": "backend",
+      "description": "Distributed log partitioning and event stream ingestion.",
+      "usedIn": [],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "docker",
+      "label": "Docker",
+      "cluster": "infrastructure",
+      "description": "Reproducible multi-stage container builds and compose topologies.",
+      "usedIn": ["greenlink", "example-vision-system"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "aws",
+      "label": "AWS",
+      "cluster": "infrastructure",
+      "description": "Cloud hosting, object storage, and managed compute.",
+      "usedIn": [],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "linux",
+      "label": "Linux",
+      "cluster": "infrastructure",
+      "description": "Kernel tuning, systemd services, and edge environment configuration.",
+      "usedIn": ["greenlink"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    },
+    {
+      "id": "deployment-monitoring",
+      "label": "Deployment and monitoring",
+      "cluster": "infrastructure",
+      "description": "Health probing, structured log ingestion, and uptime metrics.",
+      "usedIn": ["greenlink"],
+      "evidence": [],
+      "repoUrls": [],
+      "status": "placeholder"
+    }
+  ],
+  "edges": [
+    { "from": "python", "to": "pytorch", "relation": "language-framework" },
+    { "from": "python", "to": "tensorflow", "relation": "language-framework" },
+    { "from": "python", "to": "scikit-learn", "relation": "language-framework" },
+    { "from": "pytorch", "to": "yolo", "relation": "framework-model" },
+    { "from": "opencv", "to": "yolo", "relation": "preprocessing-inference" },
+    { "from": "yolo", "to": "object-detection", "relation": "model-task" },
+    { "from": "opencv", "to": "video-analytics", "relation": "pipeline-component" },
+    { "from": "rag", "to": "embeddings", "relation": "retrieval-mechanism" },
+    { "from": "rag", "to": "vector-databases", "relation": "storage-layer" },
+    { "from": "rag", "to": "llm-apis", "relation": "context-generator" },
+    { "from": "ai-agents", "to": "llm-apis", "relation": "orchestration" },
+    { "from": "embeddings", "to": "vector-databases", "relation": "indexing" },
+    { "from": "fastapi", "to": "rest-apis", "relation": "server-framework" },
+    { "from": "fastapi", "to": "python", "relation": "runtime" },
+    { "from": "fastapi", "to": "llm-apis", "relation": "integration" },
+    { "from": "fastapi", "to": "sql", "relation": "persistence" },
+    { "from": "docker", "to": "aws", "relation": "deployment" },
+    { "from": "docker", "to": "linux", "relation": "runtime-environment" },
+    { "from": "deployment-monitoring", "to": "docker", "relation": "supervision" }
+  ]
+}

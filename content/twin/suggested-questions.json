@@ -1,0 +1,34 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "label": "Explore Muzammil's engineering projects",
+      "prompt": "Explore Muzammil's engineering projects"
+    },
+    {
+      "id": "q2",
+      "label": "What is his experience with AI architecture?",
+      "prompt": "What is his experience with AI architecture?"
+    },
+    {
+      "id": "q3",
+      "label": "What are his research interests?",
+      "prompt": "What are his research interests?"
+    },
+    {
+      "id": "q4",
+      "label": "What technologies does he work with?",
+      "prompt": "What technologies does he work with?"
+    },
+    {
+      "id": "q5",
+      "label": "Tell me about his academic background",
+      "prompt": "Tell me about his academic background"
+    },
+    {
+      "id": "q6",
+      "label": "How can he be contacted?",
+      "prompt": "How can he be contacted?"
+    }
+  ]
+}
