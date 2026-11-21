@@ -68,27 +68,31 @@ export function EntryHero({ hero, site, work }: EntryHeroProps) {
       id="entry"
       data-ring="01"
       aria-label="Section 01: Entry Hero"
-      className="relative min-h-[95vh] flex flex-col justify-between pt-20 sm:pt-28 pb-12 overflow-hidden"
+      className="relative min-h-[100svh] flex flex-col justify-between pt-20 sm:pt-24 pb-12 overflow-hidden"
     >
       {/* Two-column layout: Mobile = Stage on top (55vh) then text; Desktop = 42% text left, 58% 3D stage right */}
-      <div className="flex flex-col-reverse lg:flex-row items-center w-full min-h-[calc(100vh-10rem)]">
-        {/* Left: Text column (~42% desktop) */}
+      {/* On desktop, the stage column bleeds to the right edge by using negative margin */}
+      <div className="flex flex-col-reverse lg:flex-row items-stretch w-full flex-1 min-h-[calc(100svh-8rem)]">
+        {/* Left: Text column (~42% desktop) — stays within shell padding */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="w-full lg:w-[42%] flex flex-col justify-center space-y-6 z-10 py-6 lg:py-0"
+          className="w-full lg:w-[42%] flex flex-col justify-center space-y-7 z-10 py-8 lg:py-0 pr-0 lg:pr-10"
         >
-          {/* Name: small, spaced */}
-          <motion.div variants={itemVariants}>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[#B6E36A] font-medium">
+          {/* Name */}
+          <motion.div variants={itemVariants} className="space-y-1">
+            <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#B6E36A] font-medium">
               {hero.name}
+            </p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8C96A3]/70">
+              {hero.roleLine}
             </p>
           </motion.div>
 
-          {/* Headline (max 3 lines) */}
+          {/* Headline (max 3 lines, Space Grotesk) */}
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-sans font-normal tracking-tight text-[#D9DEE5] leading-[1.08] max-w-xl">
+            <h1 className="text-[2.4rem] sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-display font-semibold tracking-tight text-[#D9DEE5] leading-[1.07] max-w-[16ch]">
               {renderHeadline()}
             </h1>
           </motion.div>
@@ -96,13 +100,13 @@ export function EntryHero({ hero, site, work }: EntryHeroProps) {
           {/* 2-line intro */}
           <motion.p
             variants={itemVariants}
-            className="text-base text-[#8C96A3] font-normal leading-relaxed max-w-lg"
+            className="text-[0.9375rem] text-[#8C96A3] font-normal leading-[1.7] max-w-[42ch]"
           >
             {hero.intro}
           </motion.p>
 
           {/* Two Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 pt-2">
+          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3 pt-1">
             <Button
               variant="primary"
               size="lg"
@@ -126,11 +130,16 @@ export function EntryHero({ hero, site, work }: EntryHeroProps) {
           </motion.div>
         </motion.div>
 
-        {/* Right: 3D Stage (~58% desktop, full viewport height, bleeding to right edge) */}
-        <div className="w-full lg:w-[58%] h-[55vh] lg:h-[88vh] relative flex items-center justify-center">
+        {/* Right: 3D Stage (~58% desktop, full viewport height)
+            Use negative right margin to bleed to the viewport edge,
+            compensating for shell padding (up to 80px) */}
+        <div
+          className="w-full lg:w-[58%] h-[58vw] max-h-[55vh] lg:max-h-none lg:h-auto lg:min-h-[calc(100svh-8rem)] relative"
+          style={{ marginRight: "calc(-1 * clamp(18px, 6vw, 80px))" }}
+        >
           <Stage
-            camera={{ position: [0, 0.4, 8], fov: 32 }}
-            className="w-full h-full"
+            camera={{ position: [0, 0, 7.5], fov: 34 }}
+            className="absolute inset-0"
             enable3D={site.featureFlags.enable3D}
           >
             <HeroSculpture />

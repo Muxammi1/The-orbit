@@ -2,7 +2,6 @@
 
 import { useState, useRef, useCallback } from "react";
 import { MonoLabel } from "@/components/ui/MonoLabel";
-import { Chip } from "@/components/ui/Chip";
 import { cn } from "@/lib/cn";
 import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import type { PersonChapter } from "@/lib/content/schemas";
@@ -51,9 +50,9 @@ export function StorySlider({ chapters }: StorySliderProps) {
     const diff = touchStartX.current - touchEndX;
 
     if (diff > 50) {
-      goNext(); // Swiped left -> next
+      goNext();
     } else if (diff < -50) {
-      goPrev(); // Swiped right -> prev
+      goPrev();
     }
     touchStartX.current = null;
   };
@@ -68,9 +67,9 @@ export function StorySlider({ chapters }: StorySliderProps) {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       aria-label="Personal narrative chapters slider"
-      className="relative flex flex-col justify-between h-full bg-[#171B22] border border-[#252C35] rounded-sm p-6 sm:p-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B6E36A] shadow-xl"
+      className="relative flex flex-col justify-between h-full bg-[#171B22]/70 border border-[#252C35] rounded-sm p-6 sm:p-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B6E36A] shadow-xl"
     >
-      {/* Screen reader live announcement */}
+      {/* Screen reader announcement */}
       <div className="sr-only" aria-live="polite">
         Chapter {currentChapter.number} of {total}: {currentChapter.title}. {currentChapter.headline}
       </div>
@@ -79,11 +78,11 @@ export function StorySlider({ chapters }: StorySliderProps) {
       <div>
         <div className="flex items-center justify-between pb-6 border-b border-[#252C35]">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-2xl sm:text-3xl font-light text-[#B6E36A]">
+            <span className="font-display text-3xl sm:text-4xl font-light text-[#B6E36A]">
               {currentChapter.number}
             </span>
             <div className="h-6 w-px bg-[#252C35]" />
-            <MonoLabel accent className="text-xs">
+            <MonoLabel accent className="text-xs uppercase tracking-widest">
               CHAPTER / {currentChapter.title}
             </MonoLabel>
           </div>
@@ -127,10 +126,10 @@ export function StorySlider({ chapters }: StorySliderProps) {
 
         {/* Chapter content */}
         <div className="mt-4 space-y-4">
-          <h3 className="text-2xl sm:text-3xl font-sans font-normal tracking-tight text-[#D9DEE5]">
+          <h3 className="text-2xl sm:text-3xl font-display font-medium tracking-tight text-[#D9DEE5]">
             {currentChapter.headline}
           </h3>
-          <p className="text-base text-[#8C96A3] leading-relaxed">
+          <p className="text-base text-[#8C96A3] font-sans leading-relaxed">
             {currentChapter.content}
           </p>
         </div>
@@ -156,7 +155,7 @@ export function StorySlider({ chapters }: StorySliderProps) {
           <div
             role="region"
             aria-label={`${currentChapter.title} expanded notes`}
-            className="mt-4 p-4 rounded-sm bg-[#0E1117] border border-[#252C35] text-sm text-[#8C96A3] leading-relaxed animate-in fade-in duration-200"
+            className="mt-4 p-4 rounded-sm bg-[#0E1117] border border-[#252C35] text-sm text-[#8C96A3] font-sans leading-relaxed animate-in fade-in duration-200"
           >
             {currentChapter.revealContent}
           </div>
@@ -166,11 +165,6 @@ export function StorySlider({ chapters }: StorySliderProps) {
           <span className="font-mono text-[10px] text-[#8C96A3]/60">
             Use ← → arrow keys or swipe to change chapters
           </span>
-          {currentChapter.status === "placeholder" && (
-            <Chip variant="placeholder" size="sm" dot>
-              Draft narrative
-            </Chip>
-          )}
         </div>
       </div>
     </div>

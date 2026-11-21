@@ -4,7 +4,6 @@ import { useSyncExternalStore, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { View } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { useSceneStore } from "./useSceneStore";
 import { useSceneProgress } from "./useSceneProgress";
 
@@ -38,8 +37,6 @@ export function SceneCanvas({
     return null;
   }
 
-  const isHighTier = deviceTier === "high";
-
   return (
     <div
       className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
@@ -59,16 +56,6 @@ export function SceneCanvas({
       >
         <Suspense fallback={null}>
           <View.Port />
-          {isHighTier && (
-            <EffectComposer autoClear={false} renderPriority={2} multisampling={0}>
-              <Bloom
-                luminanceThreshold={1.0}
-                luminanceSmoothing={0.2}
-                intensity={0.6}
-                mipmapBlur
-              />
-            </EffectComposer>
-          )}
         </Suspense>
       </Canvas>
     </div>

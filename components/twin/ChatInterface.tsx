@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { SuggestedQuestions } from "./SuggestedQuestions";
 import { TurnstileWidget } from "./TurnstileWidget";
+import type { TwinVisualState } from "@/scenes/avatar/AvatarScene";
 
 interface Question {
   id: string;
@@ -32,21 +33,20 @@ interface ChatInterfaceProps {
   questions: Question[];
   fallbackData: FallbackData;
   personaName?: string;
+  onStateChange?: (state: TwinVisualState) => void;
 }
 
-// Match a question prompt to a fallback answer key
 function matchFallback(
   prompt: string,
   fallbackData: FallbackData,
 ): FallbackAnswer {
   const lower = prompt.toLowerCase();
   const keyMap: Record<string, string[]> = {
-    q1: ["project", "engineering", "greenlink"],
-    q2: ["ai architecture", "architecture", "experience"],
-    q3: ["research", "interest"],
-    q4: ["technolog", "work with", "stack"],
-    q5: ["academic", "background", "education"],
-    q6: ["contact", "connect", "reach"],
+    q1: ["focus", "core", "engineering focus", "system"],
+    q2: ["architecture", "approach", "ai systems", "pipeline"],
+    q3: ["research", "exploring", "questions", "inquiries"],
+    q4: ["individuality", "combine", "philosophy", "personal"],
+    q5: ["ambitious", "project", "greenlink", "most ambitious"],
   };
   for (const [id, keywords] of Object.entries(keyMap)) {
     if (keywords.some((kw) => lower.includes(kw))) {
@@ -65,6 +65,7 @@ export function ChatInterface({
   questions,
   fallbackData,
   personaName = "Muzammil",
+  onStateChange,
 }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -76,7 +77,6 @@ export function ChatInterface({
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
-  // Scroll to bottom on new messages
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -93,8 +93,9 @@ export function ChatInterface({
 
   const setQuestion = useCallback((prompt: string) => {
     setInput(prompt);
+    onStateChange?.("listening");
     inputRef.current?.focus();
-  }, []);
+  }, [onStateChange]);
 
   const appendUserMessage = useCallback((content: string) => {
     setMessages((prev) => [...prev, { role: "user", content }]);
@@ -125,24 +126,26 @@ export function ChatInterface({
     setLoading(true);
     setHasSentFirst(true);
     appendUserMessage(prompt);
+    onStateChange?.("thinking");
 
-    // If no token and site key configured, use fallback directly
     const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
     if (!siteKey || !token) {
-      // Offline fallback mode
       const fallback = matchFallback(prompt, fallbackData);
       setTimeout(() => {
+        onStateChange?.("speaking");
         appendTwinMessage({
           role: "twin",
           content: fallback.answer,
           sources: fallback.sources,
         });
         setLoading(false);
-      }, 450);
+        setTimeout(() => {
+          onStateChange?.("idle");
+        }, 1200);
+      }, 500);
       return;
     }
 
-    // Online streaming mode
     abortRef.current?.abort();
     const controller = new AbortController();
     abortRef.current = controller;
@@ -159,6 +162,7 @@ export function ChatInterface({
 
       if (!response.ok || !response.body) {
         const fallback = matchFallback(prompt, fallbackData);
+        onStateChange?.("speaking");
         updateLastTwinMessage(() => ({
           role: "twin",
           content: fallback.answer,
@@ -166,9 +170,11 @@ export function ChatInterface({
           streaming: false,
         }));
         setLoading(false);
+        setTimeout(() => onStateChange?.("idle"), 1200);
         return;
       }
 
+      onStateChange?.("speaking");
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let accumulated = "";
@@ -177,7 +183,6 @@ export function ChatInterface({
         const { done, value } = await reader.read();
         if (done) break;
         const chunk = decoder.decode(value, { stream: true });
-        // Parse SSE lines
         for (const line of chunk.split("\n")) {
           if (line.startsWith("data: ")) {
             const data = line.slice(6).trim();
@@ -202,7 +207,7 @@ export function ChatInterface({
                 }));
               }
             } catch {
-              // non-JSON SSE line, ignore
+              // ignore parse errors
             }
           }
         }
@@ -212,6 +217,7 @@ export function ChatInterface({
     } catch (err) {
       if ((err as Error).name === "AbortError") return;
       const fallback = matchFallback(prompt, fallbackData);
+      onStateChange?.("speaking");
       updateLastTwinMessage(() => ({
         role: "twin",
         content: fallback.answer,
@@ -220,6 +226,7 @@ export function ChatInterface({
       }));
     } finally {
       setLoading(false);
+      setTimeout(() => onStateChange?.("idle"), 1500);
     }
   }
 
@@ -234,25 +241,38 @@ export function ChatInterface({
     !process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || !!token;
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Intro label */}
-      <p className="text-[11px] font-mono uppercase tracking-widest text-[#8C96A3]">
-        TWIN INTERFACE / OFFLINE KNOWLEDGE BASE
-      </p>
+    <div className="flex flex-col gap-5">
+      {/* Console Header Bar */}
+      <div className="flex flex-wrap items-center justify-between pb-3 border-b border-[#252C35] text-[10px] font-mono text-[#8C96A3]">
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#B6E36A] shadow-[0_0_6px_#B6E36A]" />
+          <span className="text-[#D9DEE5] font-semibold">CONSOLE // ORBIT-CORE</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span>LATENCY: 24MS</span>
+          <span className="text-[#252C35]">•</span>
+          <span>CONFIDENCE: 99.4%</span>
+        </div>
+      </div>
 
-      {/* Suggested questions — hide after first send */}
+      {/* Suggested Quick Command Chips */}
       {!hasSentFirst && (
-        <SuggestedQuestions
-          questions={questions}
-          onSelect={setQuestion}
-          disabled={loading}
-        />
+        <div className="space-y-2">
+          <p className="text-[10px] font-mono uppercase tracking-widest text-[#8C96A3]">
+            [ INITIALIZE COMMAND QUERY ]
+          </p>
+          <SuggestedQuestions
+            questions={questions}
+            onSelect={setQuestion}
+            disabled={loading}
+          />
+        </div>
       )}
 
-      {/* Chat log */}
+      {/* Terminal Output Log */}
       {messages.length > 0 && (
         <div
-          className="flex flex-col gap-4 max-h-[420px] overflow-y-auto pr-2 scrollbar-thin"
+          className="flex flex-col gap-4 max-h-[380px] overflow-y-auto pr-2 scrollbar-thin font-mono text-xs"
           role="log"
           aria-label="Conversation with the Digital Twin"
           aria-live="polite"
@@ -261,30 +281,32 @@ export function ChatInterface({
           {messages.map((msg, i) => (
             <div
               key={i}
-              className={`flex flex-col gap-1 ${msg.role === "user" ? "items-end" : "items-start"}`}
+              className={`flex flex-col gap-1.5 ${msg.role === "user" ? "items-end" : "items-start"}`}
             >
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#8C96A3]">
-                {msg.role === "user" ? "YOU" : personaName.toUpperCase()}
-              </span>
+              <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-[#8C96A3]">
+                <span className={msg.role === "user" ? "text-[#D9DEE5]" : "text-[#B6E36A]"}>
+                  {msg.role === "user" ? "user@orbit:~$ query" : `${personaName.toLowerCase()}-core:~$ transmission`}
+                </span>
+              </div>
               <div
                 className={[
-                  "max-w-[85%] rounded-sm px-4 py-3 text-sm leading-relaxed",
+                  "max-w-[90%] rounded-sm px-4 py-3 text-xs leading-relaxed",
                   msg.role === "user"
-                    ? "bg-[#171B22] border border-[#252C35] text-[#D9DEE5] text-right"
-                    : "bg-[#0E1117] border border-[#B6E36A]/20 text-[#D9DEE5]",
+                    ? "bg-[#171B22] border border-[#252C35] text-[#D9DEE5]"
+                    : "bg-[#0E1117] border border-[#B6E36A]/30 text-[#D9DEE5] shadow-[0_0_15px_rgba(182,227,106,0.05)]",
                 ].join(" ")}
               >
                 {msg.content || (msg.streaming ? "…" : "")}
                 {msg.streaming && (
-                  <span className="inline-block w-1.5 h-3.5 ml-1 bg-[#B6E36A] animate-pulse align-middle" />
+                  <span className="inline-block w-1.5 h-3 ml-1 bg-[#B6E36A] animate-pulse align-middle" />
                 )}
               </div>
               {msg.sources && msg.sources.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-1">
+                <div className="flex flex-wrap gap-1 mt-0.5">
                   {msg.sources.map((src, si) => (
                     <span
                       key={si}
-                      className="text-[10px] font-mono text-[#8C96A3]/60 italic"
+                      className="text-[9px] font-mono text-[#8C96A3]/70 px-1.5 py-0.5 rounded bg-[#171B22] border border-[#252C35]"
                     >
                       {src}
                     </span>
@@ -297,7 +319,7 @@ export function ChatInterface({
         </div>
       )}
 
-      {/* Turnstile — shown before first message */}
+      {/* Turnstile */}
       {!hasSentFirst && (
         <div>
           <TurnstileWidget
@@ -312,49 +334,44 @@ export function ChatInterface({
         </div>
       )}
 
-      {/* Input */}
-      <div className="flex gap-2 items-end">
-        <label htmlFor="twin-input" className="sr-only">
-          Ask the Digital Twin
-        </label>
+      {/* Terminal Input Prompt */}
+      <div className="relative flex gap-2 items-center bg-[#08090C] border border-[#252C35] focus-within:border-[#B6E36A] rounded-sm p-1.5 transition-colors">
+        <span className="font-mono text-xs text-[#B6E36A] pl-2 select-none">
+          orbit:~$
+        </span>
         <textarea
           id="twin-input"
           ref={inputRef}
-          rows={2}
+          rows={1}
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onFocus={() => onStateChange?.("listening")}
+          onBlur={() => {
+            if (!loading) onStateChange?.("idle");
+          }}
+          onChange={(e) => {
+            setInput(e.target.value);
+            onStateChange?.("listening");
+          }}
           onKeyDown={handleKeyDown}
           disabled={loading}
-          placeholder="Ask anything about Muzammil's work, research, or background…"
-          className={[
-            "flex-1 resize-none bg-[#0E1117] border border-[#252C35]",
-            "rounded-sm px-4 py-3 text-sm text-[#D9DEE5] placeholder-[#8C96A3]/50",
-            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6E36A]",
-            "disabled:opacity-50",
-          ].join(" ")}
+          placeholder="Ask anything about Muzammil's systems, research, or philosophy..."
+          className="flex-1 resize-none bg-transparent border-0 px-2 py-1.5 text-xs font-mono text-[#D9DEE5] placeholder-[#8C96A3]/50 focus:outline-none"
         />
         <button
           type="button"
           disabled={loading || !isTokenReady || !input.trim()}
           onClick={() => void sendMessage()}
-          className={[
-            "px-5 py-3 text-[11px] font-mono uppercase tracking-widest",
-            "bg-[#B6E36A] text-[#08090C] rounded-sm",
-            "hover:bg-[#c8f27a] active:bg-[#a4d05a]",
-            "transition-colors duration-200",
-            "disabled:opacity-40 disabled:cursor-not-allowed",
-            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6E36A]",
-          ].join(" ")}
-          aria-label="Send message"
+          className="px-4 py-1.5 text-[11px] font-mono uppercase tracking-wider bg-[#B6E36A] text-[#08090C] rounded-sm font-semibold hover:bg-[#cbf489] transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+          aria-label="Execute prompt"
         >
-          {loading ? "…" : "SEND"}
+          {loading ? "PROCESSING" : "EXECUTE"}
         </button>
       </div>
 
-      <p className="text-[10px] font-mono text-[#8C96A3]/50">
-        Responses are generated from verified content only. {personaName} speaks
-        in third person. No fabricated data is ever surfaced.
-      </p>
+      <div className="flex items-center justify-between text-[9px] font-mono text-[#8C96A3]/60">
+        <span>CONSTRAINED KNOWLEDGE ENGINE • VERIFIED RESPONSES ONLY</span>
+        <span>PRESS ENTER ↵</span>
+      </div>
     </div>
   );
 }

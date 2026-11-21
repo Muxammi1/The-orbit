@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { NavigationShell } from "@/components/navigation/NavigationShell";
 import { SceneShell } from "@/components/SceneShell";
@@ -13,15 +13,13 @@ import {
   getMediaContent,
 } from "@/lib/content/loaders";
 
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
-  style: ["normal", "italic"],
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-serif",
+  variable: "--font-display",
   display: "swap",
 });
 
-const interTight = Inter_Tight({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -79,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} dark`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}
       style={{ colorScheme: "dark" }}
     >
       <body className="min-h-screen bg-[#08090C] text-[#D9DEE5] font-sans antialiased selection:bg-[#B6E36A] selection:text-[#08090C]">

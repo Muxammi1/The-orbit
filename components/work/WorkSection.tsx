@@ -15,9 +15,8 @@ export function WorkSection({ work }: WorkSectionProps) {
       className="space-y-12 scroll-mt-24"
     >
       <SectionHeader
-        ringNumber="RING 03 / WORK"
+        ringNumber="THE ARCHIVES"
         title="Architectures of Applied Intelligence"
-        serifWord="Applied"
         subtitle="Four technical disciplines spanning agentic retrieval, computer vision, predictive classification, and distributed edge telemetry. Click any row to expand archived case studies."
       />
 

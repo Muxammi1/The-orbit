@@ -143,8 +143,11 @@ export function HeroSculpture() {
 
   return (
     <>
-      {/* Weak ambient light */}
-      <ambientLight intensity={0.15} color="#D9DEE5" />
+      {/* Balanced ambient & directional lighting for guaranteed metallic sheen */}
+      <ambientLight intensity={0.4} color="#D9DEE5" />
+      <directionalLight position={[6, 8, 5]} intensity={2.2} color="#EBF4FF" />
+      <directionalLight position={[-6, 2, -5]} intensity={1.8} color="#B58A68" />
+      <pointLight position={[0, -5, 3]} intensity={1.2} color="#8C96A3" />
 
       {/* Environment with custom Lightformer strips for metallic reflections */}
       <Environment resolution={256}>
@@ -185,12 +188,12 @@ export function HeroSculpture() {
           <meshStandardMaterial
             color="#B6E36A"
             emissive="#B6E36A"
-            emissiveIntensity={2.5}
-            roughness={0.2}
-            metalness={0.1}
+            emissiveIntensity={4.2}
+            roughness={0.15}
+            metalness={0.05}
           />
         </mesh>
-        <pointLight color="#B6E36A" intensity={2.0} distance={7} decay={2} />
+        <pointLight color="#B6E36A" intensity={3.0} distance={8} decay={2} />
 
         {/* Ring 1: radius 2.6, tube 0.07, tilt X 0.35, Titanium */}
         <group rotation={[0.35, 0, 0]}>
@@ -198,10 +201,10 @@ export function HeroSculpture() {
             <mesh material={materials.titanium}>
               <torusGeometry args={[2.6, 0.07, 64, 256]} />
             </mesh>
-            {/* Satellite 1 on Ring 1 */}
-            <mesh position={[2.6, 0, 0]} material={materials.titanium}>
-              <capsuleGeometry args={[0.06, 0.12, 8, 16]} />
-              <meshBasicMaterial color="#B6E36A" />
+            {/* Satellite 1 on Ring 1: tiny glowing capsule */}
+            <mesh position={[2.6, 0, 0]}>
+              <capsuleGeometry args={[0.06, 0.14, 8, 16]} />
+              <meshStandardMaterial color="#B6E36A" emissive="#B6E36A" emissiveIntensity={3} />
             </mesh>
           </group>
         </group>
@@ -222,8 +225,8 @@ export function HeroSculpture() {
               <torusGeometry args={[1.7, 0.06, 64, 256]} />
             </mesh>
             {/* Satellite 2 on Ring 3 */}
-            <mesh position={[0, 1.7, 0]} material={materials.bronze}>
-              <sphereGeometry args={[0.07, 16, 16]} />
+            <mesh position={[0, 1.7, 0]}>
+              <sphereGeometry args={[0.08, 16, 16]} />
               <meshStandardMaterial
                 color="#B58A68"
                 metalness={1}
@@ -240,8 +243,9 @@ export function HeroSculpture() {
               <torusGeometry args={[1.3, 0.1, 64, 256]} />
             </mesh>
             {/* Satellite 3 on Ring 4 */}
-            <mesh position={[-1.3, 0, 0]} material={materials.titanium}>
-              <sphereGeometry args={[0.06, 16, 16]} />
+            <mesh position={[-1.3, 0, 0]}>
+              <sphereGeometry args={[0.07, 16, 16]} />
+              <meshStandardMaterial color="#D9DEE5" metalness={1} roughness={0.3} />
             </mesh>
           </group>
         </group>

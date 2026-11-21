@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { MonoLabel } from "@/components/ui/MonoLabel";
 
 export interface PortraitFrameProps {
   alt?: string;
@@ -10,7 +9,7 @@ export interface PortraitFrameProps {
 }
 
 export function PortraitFrame({
-  alt = "Muzammil Yasir - Editorial Portrait",
+  alt = "Muzammil Yasir — Editorial Portrait",
   className,
 }: PortraitFrameProps) {
   const [imgError, setImgError] = useState(false);
@@ -22,7 +21,7 @@ export function PortraitFrame({
       }`}
     >
       {/* Inner frame */}
-      <div className="relative w-full h-full rounded-sm overflow-hidden bg-[#171B22]/50 flex items-center justify-center">
+      <div className="relative w-full h-full rounded-sm overflow-hidden bg-[#171B22]/60 flex items-center justify-center">
         {!imgError ? (
           <Image
             src="/media/portrait.jpg"
@@ -34,30 +33,33 @@ export function PortraitFrame({
             priority={false}
           />
         ) : (
-          /* Editorial architectural silhouette placeholder */
-          <div className="flex flex-col items-center justify-center p-8 text-center space-y-4">
-            <svg
-              className="w-24 h-24 text-[#252C35]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1}
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              />
-            </svg>
-            <div className="space-y-1">
-              <MonoLabel accent className="text-[10px]">
-                PORTRAIT SLOT
-              </MonoLabel>
-              <p className="font-mono text-[11px] text-[#8C96A3]">
-                Place photo at <code className="text-[#D9DEE5]">/public/media/portrait.jpg</code>
-              </p>
+          /* Editorial architectural silhouette */
+          <div className="relative w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-b from-[#171B22]/40 via-[#0E1117] to-[#08090C]">
+            <div className="relative w-28 h-28 mb-4 flex items-center justify-center">
+              {/* Outer delicate reticle */}
+              <div className="absolute inset-0 rounded-full border border-[#252C35] animate-[spin_60s_linear_infinite]" />
+              <div className="absolute inset-2 rounded-full border border-[#B6E36A]/20" />
+              <svg
+                className="w-16 h-16 text-[#8C96A3]/40"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1}
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
             </div>
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#D9DEE5]">
+              MUZAMMIL YASIR
+            </p>
+            <p className="font-mono text-[10px] text-[#B6E36A] tracking-wider mt-1">
+              ARCHITECTURAL ARCHIVE
+            </p>
           </div>
         )}
 
@@ -66,10 +68,11 @@ export function PortraitFrame({
 
         {/* Corner alignment construction marks */}
         <div className="absolute top-3 left-3 font-mono text-[9px] text-[#8C96A3]/60 tracking-widest select-none">
-          SEC 02 / PERSON
+          PORTRAIT ARCHIVE
         </div>
-        <div className="absolute bottom-3 right-3 font-mono text-[9px] text-[#B6E36A]/70 tracking-widest select-none">
-          SYSTEMS THINKER
+        <div className="absolute bottom-3 right-3 font-mono text-[9px] text-[#B6E36A]/80 tracking-widest select-none flex items-center gap-1.5">
+          <span className="w-1 h-1 rounded-full bg-[#B6E36A]" />
+          <span>SYSTEMS THINKER</span>
         </div>
       </div>
     </div>

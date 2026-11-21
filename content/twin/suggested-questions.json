@@ -2,33 +2,33 @@
   "questions": [
     {
       "id": "q1",
-      "label": "Explore Muzammil's engineering projects",
-      "prompt": "Explore Muzammil's engineering projects"
+      "label": "Core Engineering Focus",
+      "prompt": "What is your core engineering focus?"
     },
     {
       "id": "q2",
-      "label": "What is his experience with AI architecture?",
-      "prompt": "What is his experience with AI architecture?"
+      "label": "AI Systems Architecture",
+      "prompt": "Explain your approach to AI systems architecture."
     },
     {
       "id": "q3",
-      "label": "What are his research interests?",
-      "prompt": "What are his research interests?"
+      "label": "Current Research Inquiries",
+      "prompt": "What research questions are you currently exploring?"
     },
     {
       "id": "q4",
-      "label": "What technologies does he work with?",
-      "prompt": "What technologies does he work with?"
+      "label": "Engineering & Individuality",
+      "prompt": "How do you combine engineering with individuality?"
     },
     {
       "id": "q5",
-      "label": "Tell me about his academic background",
-      "prompt": "Tell me about his academic background"
+      "label": "Most Ambitious Project",
+      "prompt": "Show me your most ambitious project."
     },
     {
       "id": "q6",
-      "label": "How can he be contacted?",
-      "prompt": "How can he be contacted?"
+      "label": "Hardware & Telemetry",
+      "prompt": "What hardware constraints do your systems operate under?"
     }
   ]
 }

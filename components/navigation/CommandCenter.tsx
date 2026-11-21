@@ -216,7 +216,7 @@ export function CommandCenter({
                   <Sparkles className="h-4 w-4 text-[#B6E36A]" />
                   <span>Ask the Twin (AI Digital Counterpart)</span>
                 </div>
-                <span className="font-mono text-[10px] text-[#B6E36A]">RING 04</span>
+                <span className="font-mono text-[10px] text-[#B6E36A]">TWIN</span>
               </Command.Item>
               <Command.Item
                 value="action email contact connect form"
@@ -227,7 +227,7 @@ export function CommandCenter({
                   <Mail className="h-4 w-4 text-[#8C96A3]" />
                   <span>Send Direct Message / Connect</span>
                 </div>
-                <span className="font-mono text-[10px] text-[#8C96A3]">RING 07</span>
+                <span className="font-mono text-[10px] text-[#8C96A3]">CONNECT</span>
               </Command.Item>
             </Command.Group>
           </Command.List>

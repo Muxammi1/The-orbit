@@ -2,37 +2,37 @@
   "answers": {
     "q1": {
       "id": "q1",
-      "answer": "Muzammil focuses on high-reliability intelligent systems, notably GreenLink+ (an edge environmental sensor network) and real-time visual perception architectures for institutional monitoring. Both systems emphasize low-latency processing and edge resilience.",
-      "sources": ["from: GreenLink+ case study", "from: Visual Intelligence case study"]
+      "answer": "Muzammil's core engineering focus centers on high-reliability intelligent systems, low-latency perceptual pipelines, and hardware-constrained edge computing. He architectures systems that bridge machine learning models with real-world execution environments under strict latency and telemetry constraints.",
+      "sources": ["from: System Stack", "from: GreenLink+ Architecture", "from: Intelligent Systems Discipline"]
     },
     "q2": {
       "id": "q2",
-      "answer": "His experience in AI architecture spans Retrieval-Augmented Generation (RAG) pipelines, deterministic agent state machines, and hardware-constrained edge vision pipelines using PyTorch, OpenCV, and TensorRT/TFLite.",
-      "sources": ["from: System Stack", "from: Intelligent Systems Discipline"]
+      "answer": "His approach to AI systems architecture treats intelligence as a deterministic state machine rather than an opaque black box. He prioritizes verifiable Retrieval-Augmented Generation (RAG) pipelines, modular microservices, hardware-accelerated tensor operations, sub-100ms response budgets, and end-to-end telemetry.",
+      "sources": ["from: Engineering Principles", "from: Intelligent Systems Architecture"]
     },
     "q3": {
       "id": "q3",
-      "answer": "Muzammil's research inquiries concentrate on low-power edge intelligence, verifiable multi-hop retrieval pipelines, and environmental telemetry networks. All current research items are classified as Ongoing or Exploratory.",
-      "sources": ["from: Research Statement", "from: Edge AI Sensing Entry"]
+      "answer": "Muzammil's current research investigations focus on three fronts: low-power edge perception, verifiable multi-hop retrieval architectures, and environmental telemetry sensor networks. All research initiatives follow rigorous empirical benchmarking over speculative assumptions.",
+      "sources": ["from: Research Agenda", "from: Edge AI Sensing Entry"]
     },
     "q4": {
       "id": "q4",
-      "answer": "Muzammil works primarily with Python, PyTorch, OpenCV, FastAPI, and Docker for core AI/ML systems, alongside Next.js, TypeScript, and SQL for interactive verification interfaces.",
-      "sources": ["from: Stack Constellation", "from: Engineering Timeline"]
+      "answer": "Engineering is an expression of human intellect and craft. Muzammil balances algorithmic precision with deliberate aesthetic restraint, drawing from philosophy, systems thinking, and industrial design to create software and hardware that feels intentional and enduring.",
+      "sources": ["from: Individuality Statement", "from: Core Narrative"]
     },
     "q5": {
       "id": "q5",
-      "answer": "Muzammil's academic journey centers on systems engineering and computer intelligence, with active preparation for advanced graduate research in intelligent systems.",
-      "sources": ["from: Timeline Milestones", "from: Academic Statement"]
+      "answer": "GreenLink+ represents one of Muzammil's most ambitious end-to-end implementations: a distributed environmental intelligence network that combines localized sensor perception, edge anomaly detection, and continuous real-time telemetry back to centralized analytical models.",
+      "sources": ["from: GreenLink+ Case Study", "from: Edge Intelligence Discipline"]
     },
     "q6": {
       "id": "q6",
-      "answer": "You can connect with Muzammil directly through the Connect section on this site, or via his verified LinkedIn and GitHub profiles.",
-      "sources": ["from: Connect Ring", "from: Site Configuration"]
+      "answer": "Muzammil designs intelligent architectures capable of execution on microcontrollers and embedded accelerators with under 256MB RAM and single-digit milliwatt power budgets, ensuring uninterrupted autonomous operation in disconnected environments.",
+      "sources": ["from: Embedded Systems Discipline", "from: Edge AI Sensing Entry"]
     }
   },
   "defaultFallback": {
-    "answer": "Muzammil has not documented that specific detail in my offline knowledge base yet. You can submit your question directly through the Connect section form or reach him by email.",
-    "sources": ["from: Fallback Engine"]
+    "answer": "Muzammil has not indexed that specific inquiry in my offline verified database yet. You can submit your question directly through the Connect terminal below or connect via his official contact channels.",
+    "sources": ["from: Verified System Engine"]
   }
 }

@@ -1,9 +1,24 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, Suspense } from "react";
 import { View, PerspectiveCamera } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 import { useSceneStore } from "@/scenes/engine/useSceneStore";
 import { cn } from "@/lib/cn";
+
+function ViewInvalidator() {
+  const invalidate = useThree((state) => state.invalidate);
+  useEffect(() => {
+    invalidate();
+    const interval = setInterval(invalidate, 100);
+    const timeout = setTimeout(() => clearInterval(interval), 2000);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [invalidate]);
+  return null;
+}
 
 export interface StageCameraProps {
   position?: [number, number, number];
@@ -77,7 +92,10 @@ export function Stage({
               far={camera.far ?? 1000}
             />
           )}
-          {children}
+          <Suspense fallback={null}>
+            <ViewInvalidator />
+            {children}
+          </Suspense>
         </View>
       )}
     </div>

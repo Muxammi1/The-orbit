@@ -18,9 +18,8 @@ export function PersonSection({ person, timeline }: PersonSectionProps) {
       className="space-y-16 scroll-mt-24"
     >
       <SectionHeader
-        ringNumber="RING 02 / PERSON"
+        ringNumber="THE PERSON"
         title="Curiosity, Engineering, Research"
-        serifWord="Research"
         subtitle={person.statement}
       />
 

@@ -22,9 +22,8 @@ export function ConnectSection({
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#252C35]/50 pb-8">
         <SectionHeader
-          ringNumber="RING 07 / CONNECT"
-          title="Start the Next Question"
-          serifWord="Question"
+          ringNumber="CONVERGENCE"
+          title="Every meaningful system begins with a question."
           subtitle={connect.subheadline}
           id="connect-heading"
         />
@@ -44,11 +43,11 @@ export function ConnectSection({
         <div className="space-y-10">
           <div className="space-y-4">
             <MonoLabel accent>CONVERGENCE</MonoLabel>
-            <h3 className="text-2xl sm:text-3xl font-sans text-[#D9DEE5] leading-snug font-normal">
-              {connect.headline}
+            <h3 className="text-2xl sm:text-3xl font-display text-[#D9DEE5] leading-snug font-medium">
+              Let&rsquo;s explore the next one.
             </h3>
-            <p className="text-sm text-[#8C96A3] leading-relaxed max-w-lg">
-              At Ring 07, the orbital rings converge into alignment. Whether you are interested in deploying edge perception models, discussing verifiable intelligence architectures, or initiating graduate research inquiries, all channels below reach Muzammil directly.
+            <p className="text-sm text-[#8C96A3] font-sans leading-relaxed max-w-lg">
+              Where systems, inquiries, and future architectures align. Whether you are interested in deploying edge perception models, discussing verifiable intelligence architectures, or initiating research inquiries, all channels below reach Muzammil directly.
             </p>
           </div>
 
