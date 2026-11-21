@@ -119,6 +119,7 @@ export const projectSummarySchema = z.object({
   cover: z.string().optional(),
   evidenceUrl: z.string().optional(),
 });
+export type ProjectSummary = z.infer<typeof projectSummarySchema>;
 
 export const disciplineSchema = z.object({
   id: z.string(),
@@ -128,6 +129,7 @@ export const disciplineSchema = z.object({
   topics: z.array(z.string()),
   projects: z.array(z.string()),
 });
+export type Discipline = z.infer<typeof disciplineSchema>;
 
 export const workSchema = z.object({
   disciplines: z.array(disciplineSchema),
