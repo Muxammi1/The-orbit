@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "motion/react";
 import { Command } from "cmdk";
 import { Search, Compass, FileText, Sparkles, Terminal, Mail, X } from "lucide-react";
 import type { NavItem } from "./FloatingNav";
@@ -78,28 +79,40 @@ export function CommandCenter({
   };
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Command Center"
-      className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 sm:px-6 bg-[#08090C]/80 backdrop-blur-md"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-    >
-      <div className="w-full max-w-2xl bg-[#0E1117] border border-[#252C35] rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-        <Command label="Command Center Search" className="flex flex-col">
-          {/* Header search bar */}
-          <div className="flex items-center border-b border-[#252C35] px-4 py-3">
-            <Search className="h-4 w-4 text-[#B6E36A] shrink-0 mr-3" aria-hidden="true" />
-            <Command.Input
-              autoFocus
-              placeholder="Search sections, case studies, technical nodes, actions..."
-              className="w-full bg-transparent text-sm text-[#D9DEE5] placeholder-[#8C96A3] outline-none font-mono"
-            />
-            <button
-              type="button"
-              onClick={onClose}
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Command Center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 sm:px-6 bg-[#08090C]/80 backdrop-blur-md"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) onClose();
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: -8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-2xl bg-[#0E1117] border border-[#252C35] rounded-lg shadow-2xl overflow-hidden"
+          >
+            <Command label="Command Center Search" className="flex flex-col">
+              {/* Header search bar */}
+              <div className="flex items-center border-b border-[#252C35] px-4 py-3">
+                <Search className="h-4 w-4 text-[#B6E36A] shrink-0 mr-3" aria-hidden="true" />
+                <Command.Input
+                  autoFocus
+                  placeholder="Search sections, case studies, technical nodes, actions..."
+                  className="w-full bg-transparent text-sm text-[#D9DEE5] placeholder-[#8C96A3] outline-none font-mono"
+                />
+                <button
+                  type="button"
+                  onClick={onClose}
               className="text-[#8C96A3] hover:text-[#D9DEE5] p-1 rounded-sm"
               aria-label="Close Command Dialog"
             >
@@ -238,7 +251,11 @@ export function CommandCenter({
             <span>ESC to close</span>
           </div>
         </Command>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
+
+

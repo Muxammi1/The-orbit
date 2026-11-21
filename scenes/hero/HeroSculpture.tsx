@@ -52,11 +52,14 @@ function createBrushedMetalTexture(): THREE.CanvasTexture {
 
 export function HeroSculpture() {
   const groupRef = useRef<THREE.Group>(null);
+  const coreRef = useRef<THREE.Mesh>(null);
+  const coreLightRef = useRef<THREE.PointLight>(null);
   const ring1Ref = useRef<THREE.Group>(null);
   const ring2Ref = useRef<THREE.Group>(null);
   const ring3Ref = useRef<THREE.Group>(null);
   const ring4Ref = useRef<THREE.Group>(null);
   const ring5Ref = useRef<THREE.Group>(null);
+  const entranceProgress = useRef(0);
 
   const { reducedMotion, progress } = useSceneStore();
 
@@ -108,6 +111,31 @@ export function HeroSculpture() {
   useFrame((state, delta) => {
     if (!groupRef.current) return;
 
+    // 0. Authored Entrance Choreography (Focal Moment)
+    if (!reducedMotion) {
+      if (entranceProgress.current < 1) {
+        entranceProgress.current = Math.min(entranceProgress.current + delta * 1.4, 1);
+        state.invalidate();
+      }
+    } else {
+      entranceProgress.current = 1;
+    }
+
+    const t = entranceProgress.current;
+    // Natural cubic deceleration arrival
+    const easeEntrance = 1 - Math.pow(1 - t, 3);
+
+    // Dynamic core glow flare from warm rest to radiant Ion Green
+    if (coreRef.current) {
+      const mat = coreRef.current.material as THREE.MeshStandardMaterial;
+      if (mat) {
+        mat.emissiveIntensity = 1.0 + 3.2 * easeEntrance;
+      }
+    }
+    if (coreLightRef.current) {
+      coreLightRef.current.intensity = 0.8 + 2.2 * easeEntrance;
+    }
+
     // 1. Idle rotational motion on each ring around its own axis
     if (!reducedMotion) {
       if (ring1Ref.current) ring1Ref.current.rotation.z += delta * speeds.r1;
@@ -125,8 +153,9 @@ export function HeroSculpture() {
     const heroScroll = Math.min(progress * 4, 1); // 0 to 1 as hero scrolls out
     const scrollScale = Math.max(1 - heroScroll * 0.35, 0.65);
     const scrollRot = heroScroll * 0.8;
+    const entranceScale = 0.84 + 0.16 * easeEntrance;
 
-    groupRef.current.scale.setScalar(scrollScale);
+    groupRef.current.scale.setScalar(scrollScale * entranceScale);
 
     dampE(
       groupRef.current.rotation,
@@ -183,7 +212,7 @@ export function HeroSculpture() {
       {/* Gyroscope Sculpture Group */}
       <group ref={groupRef} position={[0, 0, 0]}>
         {/* Emissive Core: small sphere (radius 0.22) with emissive Ion Green */}
-        <mesh position={[0, 0, 0]}>
+        <mesh ref={coreRef} position={[0, 0, 0]}>
           <sphereGeometry args={[0.22, 32, 32]} />
           <meshStandardMaterial
             color="#B6E36A"
@@ -193,7 +222,7 @@ export function HeroSculpture() {
             metalness={0.05}
           />
         </mesh>
-        <pointLight color="#B6E36A" intensity={3.0} distance={8} decay={2} />
+        <pointLight ref={coreLightRef} color="#B6E36A" intensity={3.0} distance={8} decay={2} />
 
         {/* Ring 1: radius 2.6, tube 0.07, tilt X 0.35, Titanium */}
         <group rotation={[0.35, 0, 0]}>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence } from "motion/react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StackListView } from "./StackListView";
 import { NodeDetail } from "./NodeDetail";
@@ -85,18 +86,21 @@ export function StackSection({ stack }: StackSectionProps) {
 
         {/* Right: Selected Node Detail Inspector */}
         <div className="lg:col-span-5 flex flex-col">
-          {selectedNode ? (
-            <NodeDetail
-              node={selectedNode}
-              clusterLabel={clusterLabel}
-              onClose={() => setSelectedNode(null)}
-            />
-          ) : (
-            <div className="flex-1 flex flex-col items-center justify-center border border-[#252C35] rounded-sm bg-[#0E1117]/60 p-8 text-center text-[#8C96A3] font-mono text-xs">
-              <span className="text-[#B6E36A] mb-2">[ SELECT A NODE ]</span>
-              <p>Click any node in the 3D topology or choose from the list below to inspect its architecture, connections, and evidence.</p>
-            </div>
-          )}
+          <AnimatePresence mode="wait">
+            {selectedNode ? (
+              <NodeDetail
+                key={selectedNode.id}
+                node={selectedNode}
+                clusterLabel={clusterLabel}
+                onClose={() => setSelectedNode(null)}
+              />
+            ) : (
+              <div className="flex-1 flex flex-col items-center justify-center border border-[#252C35] rounded-sm bg-[#0E1117]/60 p-8 text-center text-[#8C96A3] font-mono text-xs">
+                <span className="text-[#B6E36A] mb-2">[ SELECT A NODE ]</span>
+                <p>Click any node in the 3D topology or choose from the list below to inspect its architecture, connections, and evidence.</p>
+              </div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 

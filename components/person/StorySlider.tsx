@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { cn } from "@/lib/cn";
 import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
@@ -12,19 +14,23 @@ export interface StorySliderProps {
 
 export function StorySlider({ chapters }: StorySliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const touchStartX = useRef<number | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const total = chapters.length;
   const currentChapter = chapters[currentIndex] || chapters[0];
   const isExpanded = expandedIndex === currentIndex;
 
   const goNext = useCallback(() => {
+    setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % total);
   }, [total]);
 
   const goPrev = useCallback(() => {
+    setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
@@ -124,14 +130,37 @@ export function StorySlider({ chapters }: StorySliderProps) {
           ))}
         </div>
 
-        {/* Chapter content */}
-        <div className="mt-4 space-y-4">
-          <h3 className="text-2xl sm:text-3xl font-display font-medium tracking-tight text-[#D9DEE5]">
-            {currentChapter.headline}
-          </h3>
-          <p className="text-base text-[#8C96A3] font-sans leading-relaxed">
-            {currentChapter.content}
-          </p>
+        {/* Chapter content with AnimatePresence */}
+        <div className="mt-4 min-h-[140px] relative overflow-hidden">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={currentIndex}
+              initial={{
+                opacity: 0,
+                x: shouldReduceMotion ? 0 : direction * 12,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              exit={{
+                opacity: 0,
+                x: shouldReduceMotion ? 0 : -direction * 12,
+              }}
+              transition={{
+                duration: shouldReduceMotion ? 0.12 : 0.22,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="space-y-4"
+            >
+              <h3 className="text-2xl sm:text-3xl font-display font-medium tracking-tight text-[#D9DEE5]">
+                {currentChapter.headline}
+              </h3>
+              <p className="text-base text-[#8C96A3] font-sans leading-relaxed">
+                {currentChapter.content}
+              </p>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 

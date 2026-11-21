@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "motion/react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { Chip } from "@/components/ui/Chip";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import type { StackNode } from "@/lib/content/schemas";
@@ -12,13 +14,19 @@ interface NodeDetailProps {
 }
 
 export function NodeDetail({ node, onClose, clusterLabel }: NodeDetailProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   if (!node) return null;
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: shouldReduceMotion ? 0 : 6 }}
+      transition={{ duration: shouldReduceMotion ? 0.1 : 0.22, ease: [0.16, 1, 0.3, 1] }}
       role="dialog"
       aria-labelledby="node-detail-title"
-      className="border border-[#252C35] rounded-sm p-6 bg-[#0E1117]/90 backdrop-blur-sm relative space-y-4"
+      className="border border-[#252C35] rounded-sm p-6 bg-[#0E1117]/95 backdrop-blur-md relative space-y-4 shadow-2xl"
     >
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -79,6 +87,6 @@ export function NodeDetail({ node, onClose, clusterLabel }: NodeDetailProps) {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }
